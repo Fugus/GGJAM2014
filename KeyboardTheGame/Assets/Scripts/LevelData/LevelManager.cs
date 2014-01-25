@@ -27,12 +27,13 @@ public class LevelManager : MonoBehaviour {
 		
 		tempTypes = new string[4, 12] {
 			{"P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "B"},
-			{"P", "P", "P", "P", "P", "P", "P", "P", "P", "T", "P", "B"},
+			{"P", "P", "P", "P", "P", "P", "P", "P", "T", "T", "P", "B"},
 			{"P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "B"},
 			{"P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "", ""}
 		};
 		ProcessLevelData("First", tempTypes);
-		levels["First"][1][9].metadata = "Test text first level.";
+		levels["First"][1][8].metadata = "I print text on the screen!";
+		levels["First"][1][9].metadata = "BUT SO DO I BITCHES!";
 		
 		/*tempTypes = new string[4, 12] {
 			{"P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "B"},

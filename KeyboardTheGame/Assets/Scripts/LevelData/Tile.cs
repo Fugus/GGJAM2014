@@ -7,7 +7,8 @@ public class Tile
 	public enum TYPES {
 		Plain, // the standard tile
 		Blank, // an empty tile
-		Text // a tile that triggers text when stepped on
+		Text, // a tile that triggers text when stepped on
+		Labyrinth // a tile with an arrow that rotates when you step on it
 	}
 	public TYPES type;
 
