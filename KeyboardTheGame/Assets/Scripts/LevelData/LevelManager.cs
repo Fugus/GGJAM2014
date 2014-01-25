@@ -27,8 +27,8 @@ public class LevelManager : MonoBehaviour {
 		
 		tempTypes = new string[4, 12] {
 			{"P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "B"},
-			{"P", "P", "P", "P", "P", "P", "P", "P", "T", "T", "P", "B"},
-			{"P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "B"},
+			{"P", "P", "L", "P", "P", "P", "P", "P", "T", "T", "P", "B"},
+			{"P", "L", "L", "P", "P", "P", "P", "P", "P", "P", "P", "B"},
 			{"P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "", ""}
 		};
 		ProcessLevelData("First", tempTypes);
@@ -67,6 +67,9 @@ public class LevelManager : MonoBehaviour {
 					break;
 				case "T":
 					newTile.type = Tile.TYPES.Text;
+					break;
+				case "L":
+					newTile.type = Tile.TYPES.Labyrinth;
 					break;
 				}
 			}
