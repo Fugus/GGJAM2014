@@ -10,7 +10,7 @@ public class LevelManager : MonoBehaviour {
 	void Start () {
 		levels = new Dictionary<string, Level>();
 		BuildLevelsFromData();
-		GetComponent<TileManager>().TileFiller();
+		GetComponent<TileManager>().LoadLevel("First");
 	}
 	
 	// Update is called once per frame
@@ -21,28 +21,31 @@ public class LevelManager : MonoBehaviour {
 	private void BuildLevelsFromData()
 	{
 		if(levels.Count > 0) throw new System.Exception("Tried to build levels more than once.");
-
-		// First level
-		string[,] tempTypes;
 		
+		string[,] tempTypes;
+
+		// First
 		tempTypes = new string[4, 12] {
 			{"P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "B"},
 			{"P", "P", "L", "P", "P", "P", "P", "P", "T", "T", "P", "B"},
 			{"P", "L", "L", "P", "P", "P", "P", "P", "P", "P", "P", "B"},
-			{"P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "", ""}
+			{"G", "P", "P", "P", "P", "P", "P", "P", "P", "P", "", ""}
 		};
 		ProcessLevelData("First", tempTypes);
 		levels["First"][1][8].metadata = "I print text on the screen!";
 		levels["First"][1][9].metadata = "BUT SO DO I BITCHES!";
-		
-		/*tempTypes = new string[4, 12] {
+		levels["First"][3][0].metadata = "Antechamber";
+
+		// Antechamber
+		tempTypes = new string[4, 12] {
 			{"P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "B"},
-			{"P", "P", "P", "P", "P", "P", "P", "P", "P", "T", "P", "B"},
+			{"P", "P", "P", "L", "L", "L", "L", "L", "L", "T", "P", "B"},
 			{"P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "B"},
-			{"P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "", ""}
+			{"G", "P", "P", "P", "P", "P", "P", "P", "P", "P", "", ""}
 		};
 		ProcessLevelData("Antechamber", tempTypes);
-		levels["Antechamber"][1][9].metadata = "Test text second level.";*/
+		levels["Antechamber"][1][9].metadata = "Test text second level.";
+		levels["Antechamber"][3][0].metadata = "First";
 	}
 
 	private void ProcessLevelData(string level_name, string[,] tile_types)
@@ -70,6 +73,9 @@ public class LevelManager : MonoBehaviour {
 					break;
 				case "L":
 					newTile.type = Tile.TYPES.Labyrinth;
+					break;
+				case "G":
+					newTile.type = Tile.TYPES.Gateway;
 					break;
 				}
 			}

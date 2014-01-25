@@ -8,7 +8,8 @@ public class Tile
 		Plain, // the standard tile
 		Blank, // an empty tile
 		Text, // a tile that triggers text when stepped on
-		Labyrinth // a tile with an arrow that rotates when you step on it
+		Labyrinth, // a tile with an arrow that rotates when you step on it
+		Gateway // a gateway to another level
 	}
 	public TYPES type;
 
