@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System;
 
 public class PlayerControl : MonoBehaviour
 {
@@ -83,6 +84,8 @@ public class PlayerControl : MonoBehaviour
     {
         if (canReadInput)
         {
+            Input.GetKeyUp((KeyCode)Enum.Parse(typeof(KeyCode), "A"));
+
             if (Input.GetButtonUp("TopLeft"))
             {
                 direction = MovementDirection.TopLeft;
@@ -162,7 +165,8 @@ public class PlayerControl : MonoBehaviour
         if (buttonPressed)
         {
             targetPosition = transform.position;
-            Vector2 movementDirection = tileRadius * GetDirection(direction);
+            Vector2 movementDirection = GetDirection(direction);
+            movementDirection *= TileFillerScript.tileWidth;
             targetPosition.x += movementDirection.x;
             targetPosition.y += movementDirection.y;
             buttonPressed = false;
