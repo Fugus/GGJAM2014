@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class TileWalking : MonoBehaviour {
-	Hashtable keys = new Hashtable(); //each tiles array of neighboors
+	Hashtable keys = new Hashtable(); //each tiles array of neighbors
 			//tiles[anyKey] = newValue;                          // insert or change the value for the given key
 			//ValueType thisValue = (ValueType)tiles[theKey];    // retrieve a value for the given key
 			//int howBig = tiles.Count;                          // get the number of items in the Hashtable
