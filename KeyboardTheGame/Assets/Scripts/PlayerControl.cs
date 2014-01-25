@@ -3,6 +3,8 @@ using System.Collections;
 
 public class PlayerControl : MonoBehaviour
 {
+    public float timeToNextTile = 0.2f;
+    
     enum MovementDirection
     {
         TopLeft,
@@ -18,7 +20,6 @@ public class PlayerControl : MonoBehaviour
     bool canReadInput = true;
     bool buttonPressed = false;
     MovementDirection direction;
-
     Vector3 targetPosition;
 
 	void Awake()
@@ -113,6 +114,8 @@ public class PlayerControl : MonoBehaviour
             targetPosition.y += movementDirection.y;
             buttonPressed = false;
             canReadInput = false;
+
+            rigidbody2D.AddForce((targetPosition - transform.position) / (timeToNextTile * Time.fixedDeltaTime));
         }
 
         Vector3 toTarget = targetPosition - transform.position;
@@ -122,10 +125,6 @@ public class PlayerControl : MonoBehaviour
             // At destination
             canReadInput = true;
             rigidbody2D.velocity = Vector3.zero;
-        }
-        else
-        {
-            rigidbody2D.AddForce(toTarget / (Time.fixedDeltaTime * Time.fixedDeltaTime));
         }
 	}
 }
