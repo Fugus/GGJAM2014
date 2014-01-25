@@ -61,7 +61,7 @@ public class PlayerControl : MonoBehaviour
 
         Vector2 result = new Vector2(Mathf.Cos(angle), Mathf.Sin(angle));
 
-        Debug.Log(result.ToString());
+        //Debug.Log(result.ToString());
 
         return result;
     }

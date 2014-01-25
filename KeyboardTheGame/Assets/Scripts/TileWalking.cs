@@ -8,10 +8,9 @@ public class TileWalking : MonoBehaviour {
 			//int howBig = tiles.Count;                          // get the number of items in the Hashtable
 			//tiles.Remove(theKey); 
 
-	string activeTile;
 
-	//list of tile objects
-	Transform[] tiles;
+	string activeTile; //the lit up tile
+	Hashtable tiles = new Hashtable(); //list of tile game objects
 
 	void Start () {
 		activeTile = "a";
@@ -26,6 +25,16 @@ public class TileWalking : MonoBehaviour {
 		keys["r"] = associatedR;
 		string[] associatedT = new string[]{"r","y","f","g"}; 
 		keys["t"] = associatedT;
+		string[] associatedY = new string[]{"t","u","g","h"}; 
+		keys["y"] = associatedY;
+		string[] associatedU = new string[]{"y","i","h","j"}; 
+		keys["u"] = associatedU;
+		string[] associatedI = new string[]{"u","o","j","k"}; 
+		keys["i"] = associatedI;
+		string[] associatedO = new string[]{"i","p","k","l"}; 
+		keys["o"] = associatedO;
+		string[] associatedP = new string[]{"o","l"}; 
+		keys["p"] = associatedP;
 
 		string[] associatedA = new string[]{"q","w","s","z"};
 		keys["a"] = associatedA;
@@ -37,6 +46,14 @@ public class TileWalking : MonoBehaviour {
 		keys["f"] = associatedF;
 		string[] associatedG = new string[]{"t","y","f","h","v","b"};
 		keys["g"] = associatedG;
+		string[] associatedH = new string[]{"y","u","g","j","b","n"};
+		keys["h"] = associatedH;
+		string[] associatedJ = new string[]{"u","i","h","k","n","m"};
+		keys["j"] = associatedJ;
+		string[] associatedK = new string[]{"i","o","j","l","m"};
+		keys["k"] = associatedK;
+		string[] associatedL = new string[]{"o","p","k"};
+		keys["l"] = associatedL;
 
 		string[] associatedZ = new string[]{"a","s","x"};
 		keys["z"] = associatedZ;
@@ -48,14 +65,18 @@ public class TileWalking : MonoBehaviour {
 		keys["v"] = associatedV;
 		string[] associatedB = new string[]{"g","h","v","n"}; 
 		keys["b"] = associatedB;
+		string[] associatedN = new string[]{"h","j","b","m"}; 
+		keys["n"] = associatedN;
+		string[] associatedM = new string[]{"j","k","n"}; 
+		keys["m"] = associatedM;
 
+		//references to tile game objects
 		int i=0;
-		/*foreach (Transform child in transform)
-		{
-			Debug.Log (child.gameObject.name);
-			tiles[i] = child;
+		foreach (Transform child in transform){
+			tiles[i] = child.gameObject as GameObject;
 			i++;
-		}*/
+		}
+		(tiles[0] as GameObject).renderer.material.shader = Shader.Find("Reflective/Bumped Specular"); //light up strating tile
 	}
 
 	void Update () {
@@ -66,6 +87,16 @@ public class TileWalking : MonoBehaviour {
 				if (Input.GetKeyDown(associated[i])){ //make sure pressed key is in active tile's associated
 					Debug.Log(associated[i]);
 					activeTile = associated[i];
+
+					//find the tile object to light it up
+					for(int j=0; j<tiles.Count; j++){
+						(tiles[j] as GameObject).renderer.material.shader = Shader.Find("Bumped Diffuse");//reset
+
+						string tileName = tiles[j].ToString();
+						if(tileName.Substring(4, 1).ToLower() == activeTile){
+							(tiles[j] as GameObject).renderer.material.shader = Shader.Find("Reflective/Bumped Specular");//light up
+						}
+					}
 				}
 			}
 
