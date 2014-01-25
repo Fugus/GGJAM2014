@@ -66,7 +66,6 @@ public class PlayerControl : MonoBehaviour
         return result;
     }
 
-
     void Update()
     {
         if (canReadInput)
