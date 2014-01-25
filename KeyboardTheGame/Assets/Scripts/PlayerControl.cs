@@ -171,7 +171,7 @@ public class PlayerControl : MonoBehaviour
         {
             targetPosition = transform.position;
             Vector2 movementDirection = GetDirection(direction);
-            movementDirection *= TileFillerScript.tileWidth;
+            movementDirection *= TileManager.tileWidth;
             targetPosition.x += movementDirection.x;
             targetPosition.y += movementDirection.y;
             buttonPressed = false;
@@ -196,7 +196,7 @@ public class PlayerControl : MonoBehaviour
 
     public void OnGUI()
     {
-        Debug.Log(currentTile.ToString());
-        Debug.Log(transform.position.ToString());
+        //Debug.Log(currentTile.ToString());
+        //Debug.Log(transform.position.ToString());
     }
 }

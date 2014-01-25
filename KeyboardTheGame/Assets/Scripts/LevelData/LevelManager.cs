@@ -4,12 +4,13 @@ using System.Collections.Generic;
 
 public class LevelManager : MonoBehaviour {
 
-	public Dictionary<string, Level> levels;
+	public Dictionary<string, Level> levels = new Dictionary<string, Level>();
 
 	// Use this for initialization
 	void Start () {
 		levels = new Dictionary<string, Level>();
 		BuildLevelsFromData();
+		GetComponent<TileManager>().TileFiller();
 	}
 	
 	// Update is called once per frame
@@ -22,28 +23,25 @@ public class LevelManager : MonoBehaviour {
 		if(levels.Count > 0) throw new System.Exception("Tried to build levels more than once.");
 
 		// First level
-		string[,] firstTypes = new string[4, 12] {
 		string[,] tempTypes;
 		
 		tempTypes = new string[4, 12] {
 			{"P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "B"},
-
 			{"P", "P", "P", "P", "P", "P", "P", "P", "P", "T", "P", "B"},
 			{"P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "B"},
 			{"P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "", ""}
 		};
-		ProcessLevelData("First", firstTypes);
 		ProcessLevelData("First", tempTypes);
 		levels["First"][2][10].metadata = "Test text first level.";
 		
-		tempTypes = new string[4, 12] {
+		/*tempTypes = new string[4, 12] {
 			{"P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "B"},
 			{"P", "P", "P", "P", "P", "P", "P", "P", "P", "T", "P", "B"},
 			{"P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "B"},
 			{"P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "", ""}
 		};
 		ProcessLevelData("Antechamber", tempTypes);
-		levels["Antechamber"][2][10].metadata = "Test text second level.";
+		levels["Antechamber"][2][10].metadata = "Test text second level.";*/
 	}
 
 	private void ProcessLevelData(string level_name, string[,] tile_types)
@@ -54,7 +52,7 @@ public class LevelManager : MonoBehaviour {
 			//levels["First"].Add(i, new SortedList<int, Tile>());
 			for(int j = 0; j < 12; j++)
 			{
-				if(i == 3 && (j == 10 || j == 11)) break;
+				if(i == 3 && j >= 10) break;
 				//Tile newTile = new Tile();
 				//levels["First"][i].Add(j, newTile);
 				Tile newTile = levels[level_name][i][j];
