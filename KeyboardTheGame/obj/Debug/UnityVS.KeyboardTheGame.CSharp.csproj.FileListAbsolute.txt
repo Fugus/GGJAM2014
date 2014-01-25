@@ -1,0 +1,9 @@
+C:\Users\Clement\Documents\Git\GGJAM2014\KeyboardTheGame\Temp\UnityVS_bin\Debug\Assembly-CSharp.dll
+C:\Users\Clement\Documents\Git\GGJAM2014\KeyboardTheGame\Temp\UnityVS_bin\Debug\Assembly-CSharp.pdb
+C:\Users\Clement\Documents\Git\GGJAM2014\KeyboardTheGame\Temp\UnityVS_bin\Debug\UnityEditor.dll
+C:\Users\Clement\Documents\Git\GGJAM2014\KeyboardTheGame\Temp\UnityVS_bin\Debug\UnityEngine.dll
+C:\Users\Clement\Documents\Git\GGJAM2014\KeyboardTheGame\Temp\UnityVS_bin\Debug\UnityEngine.xml
+C:\Users\Clement\Documents\Git\GGJAM2014\KeyboardTheGame\Temp\UnityVS_bin\Debug\UnityEditor.xml
+C:\Users\Clement\Documents\Git\GGJAM2014\KeyboardTheGame\obj\Debug\UnityVS.KeyboardTheGame.CSharp.csprojResolveAssemblyReference.cache
+C:\Users\Clement\Documents\Git\GGJAM2014\KeyboardTheGame\obj\Debug\Assembly-CSharp.dll
+C:\Users\Clement\Documents\Git\GGJAM2014\KeyboardTheGame\obj\Debug\Assembly-CSharp.pdb
