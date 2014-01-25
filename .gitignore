@@ -6,3 +6,6 @@ Temp
 *.unityproj
 *.sln
 *.userprefs
+KeyboardTheGame/Assets/UnityVS/Editor/UnityVS.VersionSpecific.dll
+KeyboardTheGame/Assets/UnityVS/Editor/UnityVS.VersionSpecific.dll.meta
+KeyboardTheGame/obj/*
