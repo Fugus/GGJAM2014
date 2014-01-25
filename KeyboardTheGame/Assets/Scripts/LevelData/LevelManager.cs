@@ -23,7 +23,7 @@ public class LevelManager : MonoBehaviour {
 
 		// First level
 		string[,] firstTypes = new string[4, 12] {
-			{"P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "B"},
+			{"P", "P", "P", "T", "P", "P", "T", "P", "P", "P", "P", "B"},
 			{"P", "P", "P", "P", "P", "P", "P", "P", "P", "T", "P", "B"},
 			{"P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "B"},
 			{"P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "", ""}

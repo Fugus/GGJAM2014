@@ -17,7 +17,7 @@ public class RecordSound : MonoBehaviour
 
     }
 
-    public void OnApplyTriggerAction()
+    public void OnEnterTile()
     {
         hasAppliedTriggerAction = true;
     }
@@ -32,13 +32,23 @@ public class RecordSound : MonoBehaviour
 
         if (timer.IsStarted() && timer.IsElapsed())
         {
-            hasAppliedTriggerAction = false;
-            timer.Stop();
-            Microphone.End(null);
+            StopRecording();
             GameObject playerGameObject = GameObject.FindGameObjectWithTag("Player");
             PlayerControl playerControlScript = playerGameObject.GetComponent<PlayerControl>();
             playerControlScript.AddSound(soundToRecord, recordedClip);
         }
+    }
+
+    void OnExitTile()
+    {
+        StopRecording();
+    }
+
+    void StopRecording()
+    {
+        hasAppliedTriggerAction = false;
+        timer.Stop();
+        Microphone.End(null);
     }
 
     void OnGUI()

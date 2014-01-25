@@ -10,9 +10,10 @@ GameObject:
   - 4: {fileID: 400000}
   - 33: {fileID: 3300000}
   - 23: {fileID: 2300000}
-  - 64: {fileID: 6400000}
+  - 114: {fileID: 11400000}
+  - 135: {fileID: 13500000}
   m_Layer: 0
-  m_Name: iceTilePrefab
+  m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -57,8 +58,20 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
   m_Mesh: {fileID: 4300000, guid: 0353389e807138144929405612636e89, type: 3}
---- !u!64 &6400000
-MeshCollider:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4fc64566bf83a934d9b3816b2ead1372, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stringToMatch: toto123
+--- !u!135 &13500000
+SphereCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
@@ -67,9 +80,8 @@ MeshCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_SmoothSphereCollisions: 0
-  m_Convex: 0
-  m_Mesh: {fileID: 4300000, guid: 0353389e807138144929405612636e89, type: 3}
+  m_Radius: 8
+  m_Center: {x: 0, y: 0, z: 5}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
