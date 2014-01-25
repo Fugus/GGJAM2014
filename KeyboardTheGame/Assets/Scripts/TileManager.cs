@@ -34,7 +34,7 @@ public class TileManager : MonoBehaviour
 				addedTile.transform.parent = gameObject.transform;
 			}
 			rowOrigin.x += tileWidth / 2.0f;
-			rowOrigin.y += tileHeight;
+			rowOrigin.y -= tileHeight;
 		}
 	}
 
