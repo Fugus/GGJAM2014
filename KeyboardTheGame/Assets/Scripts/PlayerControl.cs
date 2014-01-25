@@ -120,8 +120,7 @@ public class PlayerControl : MonoBehaviour
 
     public void AddSound(RecordableSounds sound, AudioClip clip)
     {
-		if(sounds.ContainsKey(sound)) sounds[sound] = clip;
-        else sounds.Add(sound, clip);
+        sounds.Add(sound, clip);
     }
 
     public void PlaySound(RecordableSounds sound)
