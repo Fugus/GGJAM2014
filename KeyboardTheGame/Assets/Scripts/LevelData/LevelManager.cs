@@ -21,14 +21,18 @@ public class LevelManager : MonoBehaviour {
 	{
 		if(levels.Count > 0) throw new System.Exception("Tried to build levels more than once.");
 
+		// First level
+		string[,] firstTypes = new string[4, 12] {
 		string[,] tempTypes;
 		
 		tempTypes = new string[4, 12] {
 			{"P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "B"},
+
 			{"P", "P", "P", "P", "P", "P", "P", "P", "P", "T", "P", "B"},
 			{"P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "B"},
 			{"P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "", ""}
 		};
+		ProcessLevelData("First", firstTypes);
 		ProcessLevelData("First", tempTypes);
 		levels["First"][2][10].metadata = "Test text first level.";
 		

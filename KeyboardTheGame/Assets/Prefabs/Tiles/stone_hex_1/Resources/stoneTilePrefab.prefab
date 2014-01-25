@@ -10,9 +10,9 @@ GameObject:
   - 4: {fileID: 400000}
   - 33: {fileID: 3300000}
   - 23: {fileID: 2300000}
-  - 64: {fileID: 6400000}
+  - 135: {fileID: 13500000}
   m_Layer: 0
-  m_Name: iceTilePrefab
+  m_Name: stoneTilePrefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -25,7 +25,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
   m_LocalRotation: {x: 0, y: 0, z: .707106829, w: .707106829}
-  m_LocalPosition: {x: -20.9722481, y: 0, z: 0}
+  m_LocalPosition: {x: -41.4251709, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -41,7 +41,7 @@ Renderer:
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
-  - {fileID: 2100000, guid: 0229b35ebfe281649a1e78536a2fe2a7, type: 2}
+  - {fileID: 2100000, guid: 5c15279338340f8469b43d16dac33f8b, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0
@@ -56,9 +56,9 @@ MeshFilter:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
-  m_Mesh: {fileID: 4300000, guid: 0353389e807138144929405612636e89, type: 3}
---- !u!64 &6400000
-MeshCollider:
+  m_Mesh: {fileID: 4300000, guid: d1a176a98d507ef42a9796487bf29974, type: 3}
+--- !u!135 &13500000
+SphereCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
@@ -67,9 +67,8 @@ MeshCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_SmoothSphereCollisions: 0
-  m_Convex: 0
-  m_Mesh: {fileID: 4300000, guid: 0353389e807138144929405612636e89, type: 3}
+  m_Radius: 8
+  m_Center: {x: 0, y: 0, z: 5}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
