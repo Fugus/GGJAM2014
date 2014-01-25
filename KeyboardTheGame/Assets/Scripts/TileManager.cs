@@ -8,12 +8,9 @@ public class TileManager : MonoBehaviour
 
     public GameObject emptyTile;
 
-    private LevelManager levelManager;
-
     // Use this for initialization
     void Start()
     {
-		levelManager = GetComponent<LevelManager>();
     }
 
     // Update is called once per frame
@@ -30,7 +27,7 @@ public class TileManager : MonoBehaviour
 			for (int i = 0; i < 12; ++i)
 			{
 				if (j == 3 && i >= 10) break;
-				Tile tile = levelManager.levels["First"][j][i];
+                Tile tile = GetComponent<LevelManager>().levels["First"][j][i];
 				
 				GameObject prefab = Resources.Load<GameObject>(tile.type.ToString());
 				GameObject addedTile = GameObject.Instantiate(prefab, rowOrigin + Vector3.right * i * tileWidth, emptyTile.transform.rotation) as GameObject;
