@@ -1,10 +1,20 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class PlayerControl : MonoBehaviour
 {
     public float timeToNextTile = 0.2f;
-    
+    public float tileRadius = 20.0f;
+
+    public enum RecordableSounds
+    {
+        Walking,
+        GuitarSolo
+    }
+
+    public Dictionary<RecordableSounds, AudioClip> sounds;
+
     enum MovementDirection
     {
         TopLeft,
@@ -22,10 +32,13 @@ public class PlayerControl : MonoBehaviour
     MovementDirection direction;
     Vector3 targetPosition;
 
+    GameObject currentTile;
+
 	void Awake()
 	{
 		// Setting up references.
 		anim = GetComponent<Animator>();
+        sounds = new Dictionary<RecordableSounds, AudioClip>();
 	}
 
     void Start()
@@ -103,27 +116,73 @@ public class PlayerControl : MonoBehaviour
         }
     }
 
-	void FixedUpdate ()
+    #region Sounds
+
+    public void AddSound(RecordableSounds sound, AudioClip clip)
+    {
+		if(sounds.ContainsKey(sound)) sounds[sound] = clip;
+        else sounds.Add(sound, clip);
+    }
+
+    public void PlaySound(RecordableSounds sound)
+    {
+        AudioClip soundToPlay;
+
+        if (sounds.TryGetValue(sound, out soundToPlay))
+        {
+            audio.clip = soundToPlay;
+            audio.Play();
+        }
+    }
+
+    public void StopSound(RecordableSounds sound)
+    {
+        AudioClip soundToPlay;
+
+        if (sounds.TryGetValue(sound, out soundToPlay))
+        {
+            if (audio.clip == soundToPlay)
+                audio.Stop();
+        }
+    }
+
+    #endregion
+
+    void OnTriggerEnter(Collider other)
+    {
+        currentTile = other.gameObject;
+    }
+
+    void ApplyTriggerAction()
+    {
+        currentTile.BroadcastMessage("OnApplyTriggerAction");
+    }
+
+    void FixedUpdate ()
 	{
         if (buttonPressed)
         {
             targetPosition = transform.position;
-            Vector2 movementDirection = GetDirection(direction);
+            Vector2 movementDirection = tileRadius * GetDirection(direction);
             targetPosition.x += movementDirection.x;
             targetPosition.y += movementDirection.y;
             buttonPressed = false;
             canReadInput = false;
 
-            rigidbody2D.AddForce((targetPosition - transform.position) / (timeToNextTile * Time.fixedDeltaTime));
+            rigidbody.AddForce((targetPosition - transform.position) / (timeToNextTile * Time.fixedDeltaTime));
+            PlaySound(RecordableSounds.Walking);
         }
 
         Vector3 toTarget = targetPosition - transform.position;
 
-        if (toTarget.magnitude < 0.0001f && !canReadInput)
+        if (toTarget.magnitude < 0.01f && !canReadInput)
         {
             // At destination
+            StopSound(RecordableSounds.Walking);
             canReadInput = true;
-            rigidbody2D.velocity = Vector3.zero;
+            ApplyTriggerAction();
+            rigidbody.velocity = Vector3.zero;
+            rigidbody.position = targetPosition;
         }
 	}
 }
