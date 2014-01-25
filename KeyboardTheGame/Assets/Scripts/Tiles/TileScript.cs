@@ -3,7 +3,7 @@ using System.Collections;
 
 public class TileScript : MonoBehaviour {
 
-	public UIManager UIManager_;
+	protected UIManager UIManager_;
 	public string metadata = "";
 
 	protected bool hasAppliedTriggerAction = false;
@@ -13,12 +13,12 @@ public class TileScript : MonoBehaviour {
 	}
 	
 	// Use this for initialization
-	void Start () {
-		
+	protected void Start () {
+		UIManager_ = GameObject.Find("/Managers").GetComponent<UIManager>();
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	protected void Update () {
 		if(hasAppliedTriggerAction)
 		{
 			hasAppliedTriggerAction = false;

@@ -10,8 +10,8 @@ GameObject:
   - 4: {fileID: 400000}
   - 33: {fileID: 3300000}
   - 23: {fileID: 2300000}
-  - 114: {fileID: 11400000}
   - 135: {fileID: 13500000}
+  - 114: {fileID: 11400000}
   m_Layer: 0
   m_Name: Text
   m_TagString: Untagged
@@ -66,10 +66,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 100000}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4fc64566bf83a934d9b3816b2ead1372, type: 3}
+  m_Script: {fileID: 11500000, guid: 66c2c982587e8dd4896afdbbb1a942f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stringToMatch: toto123
+  metadata: 
 --- !u!135 &13500000
 SphereCollider:
   m_ObjectHideFlags: 1

@@ -31,10 +31,12 @@ public class TileManager : MonoBehaviour
 				
 				GameObject prefab = Resources.Load<GameObject>(tile.type.ToString());
 				GameObject addedTile = GameObject.Instantiate(prefab, rowOrigin + Vector3.right * i * tileWidth, emptyTile.transform.rotation) as GameObject;
+				TileScript tileScript = addedTile.GetComponent<TileScript>();
+				if(tileScript != null) tileScript.metadata = tile.metadata;
 				addedTile.transform.parent = gameObject.transform;
 			}
 			rowOrigin.x += tileWidth / 2.0f;
-			rowOrigin.y += tileHeight;
+			rowOrigin.y -= tileHeight;
 		}
 	}
 

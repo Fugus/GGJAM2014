@@ -27,12 +27,13 @@ public class LevelManager : MonoBehaviour {
 		
 		tempTypes = new string[4, 12] {
 			{"P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "B"},
-			{"P", "P", "P", "P", "P", "P", "P", "P", "P", "T", "P", "B"},
-			{"P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "B"},
+			{"P", "P", "L", "P", "P", "P", "P", "P", "T", "T", "P", "B"},
+			{"P", "L", "L", "P", "P", "P", "P", "P", "P", "P", "P", "B"},
 			{"P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "", ""}
 		};
 		ProcessLevelData("First", tempTypes);
-		levels["First"][2][10].metadata = "Test text first level.";
+		levels["First"][1][8].metadata = "I print text on the screen!";
+		levels["First"][1][9].metadata = "BUT SO DO I BITCHES!";
 		
 		/*tempTypes = new string[4, 12] {
 			{"P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "B"},
@@ -41,7 +42,7 @@ public class LevelManager : MonoBehaviour {
 			{"P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "", ""}
 		};
 		ProcessLevelData("Antechamber", tempTypes);
-		levels["Antechamber"][2][10].metadata = "Test text second level.";*/
+		levels["Antechamber"][1][9].metadata = "Test text second level.";*/
 	}
 
 	private void ProcessLevelData(string level_name, string[,] tile_types)
@@ -66,6 +67,9 @@ public class LevelManager : MonoBehaviour {
 					break;
 				case "T":
 					newTile.type = Tile.TYPES.Text;
+					break;
+				case "L":
+					newTile.type = Tile.TYPES.Labyrinth;
 					break;
 				}
 			}
