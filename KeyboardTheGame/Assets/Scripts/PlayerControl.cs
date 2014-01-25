@@ -171,7 +171,7 @@ public class PlayerControl : MonoBehaviour
         {
             targetPosition = transform.position;
             Vector2 movementDirection = GetDirection(direction);
-            movementDirection *= TileFillerScript.tileWidth;
+            movementDirection *= TileManager.tileWidth;
             targetPosition.x += movementDirection.x;
             targetPosition.y += movementDirection.y;
             buttonPressed = false;
@@ -193,4 +193,5 @@ public class PlayerControl : MonoBehaviour
             rigidbody.position = targetPosition;
         }
 	}
+
 }
