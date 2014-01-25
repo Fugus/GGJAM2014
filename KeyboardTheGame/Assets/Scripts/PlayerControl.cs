@@ -193,10 +193,4 @@ public class PlayerControl : MonoBehaviour
             rigidbody.position = targetPosition;
         }
 	}
-
-    public void OnGUI()
-    {
-        Debug.Log(currentTile.ToString());
-        Debug.Log(transform.position.ToString());
-    }
 }

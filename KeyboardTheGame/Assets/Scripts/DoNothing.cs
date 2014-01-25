@@ -7,4 +7,8 @@ public class DoNothing : MonoBehaviour
     public void OnEnterTile()
     {
     }
+
+    public void OnExitTile()
+    {
+    }
 }

@@ -6,8 +6,6 @@ public class TileFillerScript : MonoBehaviour
     public static float tileWidth = 35.4f / 2;
     public static float tileHeight = 15f;
 
-    public GameObject emptyTile;
-
     public LevelManager levelManager;
 
     // Use this for initialization
@@ -23,7 +21,8 @@ public class TileFillerScript : MonoBehaviour
                     break;
                 Tile tile  = levelManager.levels["First"][j][i];
 
-                GameObject addedTile = GameObject.Instantiate(Resources.Load(tile.type.ToString()), rowOrigin + Vector3.right * i * tileWidth, emptyTile.transform.rotation) as GameObject;
+                GameObject prefab = Resources.Load(tile.type.ToString()) as GameObject;
+                GameObject addedTile = GameObject.Instantiate(prefab, rowOrigin + Vector3.right * i * tileWidth, prefab.transform.rotation) as GameObject;
                 addedTile.transform.parent = gameObject.transform;
             }
             rowOrigin.x += tileWidth / 2.0f;
