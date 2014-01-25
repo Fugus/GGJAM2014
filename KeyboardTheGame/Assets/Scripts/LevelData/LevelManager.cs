@@ -32,7 +32,7 @@ public class LevelManager : MonoBehaviour {
 			{"P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "", ""}
 		};
 		ProcessLevelData("First", tempTypes);
-		levels["First"][2][10].metadata = "Test text first level.";
+		levels["First"][1][9].metadata = "Test text first level.";
 		
 		/*tempTypes = new string[4, 12] {
 			{"P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "B"},
@@ -41,7 +41,7 @@ public class LevelManager : MonoBehaviour {
 			{"P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "", ""}
 		};
 		ProcessLevelData("Antechamber", tempTypes);
-		levels["Antechamber"][2][10].metadata = "Test text second level.";*/
+		levels["Antechamber"][1][9].metadata = "Test text second level.";*/
 	}
 
 	private void ProcessLevelData(string level_name, string[,] tile_types)
