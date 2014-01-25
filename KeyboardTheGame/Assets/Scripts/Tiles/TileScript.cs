@@ -7,7 +7,7 @@ public class TileScript : MonoBehaviour {
 	public string metadata = "";
 
 	protected bool hasAppliedTriggerAction = false;
-	public void OnApplyTriggerAction()
+	public void OnEnterTile()
 	{
 		hasAppliedTriggerAction = true;
 	}
