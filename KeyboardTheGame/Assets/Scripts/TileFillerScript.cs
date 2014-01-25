@@ -23,7 +23,8 @@ public class TileFillerScript : MonoBehaviour
                     break;
                 Tile tile  = levelManager.levels["First"][j][i];
 
-                GameObject.Instantiate(Resources.Load(tile.type.ToString()), rowOrigin + Vector3.right * i * tileWidth, emptyTile.transform.rotation);
+                GameObject addedTile = GameObject.Instantiate(Resources.Load(tile.type.ToString()), rowOrigin + Vector3.right * i * tileWidth, emptyTile.transform.rotation) as GameObject;
+                addedTile.transform.parent = gameObject.transform;
             }
             rowOrigin.x += tileWidth / 2.0f;
             rowOrigin.y += tileHeight;
