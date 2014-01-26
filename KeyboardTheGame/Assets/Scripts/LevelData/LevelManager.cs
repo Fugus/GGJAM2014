@@ -41,7 +41,7 @@ public class LevelManager : MonoBehaviour {
 			{"P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "B"},
 			{"P", "P", "L", "P", "P", "P", "P", "P", "T", "T", "P", "B"},
 			{"P", "L", "L", "P", "P", "R", "P", "P", "P", "P", "P", ""},
-			{"G", "P", "P", "P", "P", "P", "P", "P", "P", "P", "", ""}
+			{"G", "P", "C", "P", "P", "P", "P", "P", "P", "P", "", ""}
 		};
 		ProcessLevelData("First", tempTypes);
 		levels["First"][1][8].metadata = "I print text on the screen!";
@@ -59,7 +59,7 @@ public class LevelManager : MonoBehaviour {
 			{"P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "B"},
 			{"P", "P", "P", "L", "L", "L", "L", "L", "L", "T", "P", "B"},
 			{"P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", ""},
-			{"G", "P", "P", "P", "P", "P", "P", "P", "P", "P", "", ""}
+			{"G", "P", "C", "P", "P", "P", "P", "P", "P", "P", "", ""}
 		};
 		ProcessLevelData("Antechamber", tempTypes);
 		levels["Antechamber"][1][9].metadata = "Test text second level.";
@@ -156,6 +156,9 @@ public class LevelManager : MonoBehaviour {
                 case "R":
                     newTile.type = Tile.TYPES.RTile;
                     break;
+				case "C":
+					newTile.type = Tile.TYPES.SeeTower;
+					break;
                 }
 			}
 		}

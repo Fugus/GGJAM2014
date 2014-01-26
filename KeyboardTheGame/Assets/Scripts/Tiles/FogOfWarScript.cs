@@ -30,4 +30,14 @@ public class FogOfWarScript : MonoBehaviour
             transform.parent.renderer.material = oldMaterial;
         }
     }
+
+	public void OnEnable()
+	{
+		if (transform.parent != null)
+		{
+			particleSystem.Play();
+			oldMaterial = transform.parent.renderer.material;
+			transform.parent.renderer.material = materialToSubstitute;
+		}
+	}
 }
