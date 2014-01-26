@@ -54,14 +54,14 @@ public class UIManager : MonoBehaviour {
         const int BG_WIDTH = 1024;
         const int BG_HEIGHT = 640;
 
-        float widthFactor = (float)BG_WIDTH / (float)Screen.width;
-        float heighFactor = (float)BG_HEIGHT / (float)Screen.height;
+        float widthFactor = (float)Screen.width / (float)BG_WIDTH;
+        float heighFactor = (float)Screen.height / (float)BG_HEIGHT;
 
         GUI.DrawTexture(new Rect(0.0f, 0.0f, Screen.width, Screen.height), CreditBGTex);
 
-        float beginX = .17f * widthFactor * Screen.width;
-        float beginY = .79f * heighFactor * Screen.height;
-        GUILayout.BeginArea(new Rect(beginX, beginY, beginX + 1.5f * BUTTON_WIDTH, beginY + 1.5f * BUTTON_HEIGHT));
+        float beginX = .17f * Screen.width;
+        float beginY = .79f * Screen.height;
+        GUILayout.BeginArea(new Rect(beginX, beginY, beginX + widthFactor * 1.5f * BUTTON_WIDTH, beginY + heighFactor * 1.5f * BUTTON_HEIGHT));
         if (GUILayout.Button(BeginTex, GUILayout.Width(widthFactor * 1.5f * BUTTON_WIDTH), GUILayout.Height(heighFactor * 1.5f * BUTTON_HEIGHT)))
         {
             currentState = UIState.Game;
@@ -69,9 +69,9 @@ public class UIManager : MonoBehaviour {
         }
         GUILayout.EndArea();
 
-        float exitX = .37f * widthFactor * Screen.width;
-        float exitY = .8f * heighFactor * Screen.height;
-        GUILayout.BeginArea(new Rect(exitX, exitY, exitX + BUTTON_WIDTH, exitY + BUTTON_HEIGHT));
+        float exitX = .37f * Screen.width;
+        float exitY = .8f * Screen.height;
+        GUILayout.BeginArea(new Rect(exitX, exitY, exitX + widthFactor * BUTTON_WIDTH, exitY + heighFactor * BUTTON_HEIGHT));
         if (GUILayout.Button(SplashExitTex, GUILayout.Width(widthFactor * BUTTON_WIDTH), GUILayout.Height(heighFactor * BUTTON_HEIGHT)))
         {
             QuitGame();
@@ -83,8 +83,11 @@ public class UIManager : MonoBehaviour {
         newIsAzerty = null;
         //if (!isAzerty)
         //{
-            GUILayout.BeginArea(new Rect(Screen.width - BUTTON_WIDTH, Screen.height - 2 * BUTTON_HEIGHT, BUTTON_WIDTH, BUTTON_HEIGHT));
-            if (GUILayout.Button(AzertyTex, GUILayout.Width(BUTTON_WIDTH), GUILayout.Height(BUTTON_HEIGHT)))
+        float azertyX =  (1f -.27f) * Screen.width;
+        float azertyY = (.79f) * Screen.height;
+
+        GUILayout.BeginArea(new Rect(azertyX, azertyY, azertyX + .7f * BUTTON_WIDTH, azertyY + .7f * BUTTON_HEIGHT));
+        if (GUILayout.Button(AzertyTex, GUILayout.Width(.7f * BUTTON_WIDTH), GUILayout.Height(.7f * BUTTON_HEIGHT)))
             {
                 newIsAzerty = true;
             }
@@ -93,8 +96,11 @@ public class UIManager : MonoBehaviour {
 
         //if (isAzerty)
         //{
-            GUILayout.BeginArea(new Rect(Screen.width - 2 * BUTTON_WIDTH, Screen.height - 2 * BUTTON_HEIGHT, BUTTON_WIDTH, BUTTON_HEIGHT));
-            if (GUILayout.Button(QwertyTex, GUILayout.Width(BUTTON_WIDTH), GUILayout.Height(BUTTON_HEIGHT)))
+            float qwertyX = (1 - .14f) * Screen.width;
+            float qwertyY = .79f * Screen.height;
+
+            GUILayout.BeginArea(new Rect(qwertyX, qwertyY, qwertyX + .7f * BUTTON_WIDTH, qwertyY + 0.7f * BUTTON_HEIGHT));
+            if (GUILayout.Button(QwertyTex, GUILayout.Width(.7f * BUTTON_WIDTH), GUILayout.Height(.7f * BUTTON_HEIGHT)))
             {
                 newIsAzerty = false;
             }
@@ -112,10 +118,13 @@ public class UIManager : MonoBehaviour {
 #region AZERTY
         newIsOculus = null;
 
+        float oculusX = (1f - .27f) * Screen.width;
+        float oculusY = (.84f) * Screen.height;
+
         //if (!isOculus)
         //{
-            GUILayout.BeginArea(new Rect(Screen.width - BUTTON_WIDTH, Screen.height - BUTTON_HEIGHT, BUTTON_WIDTH, BUTTON_HEIGHT));
-            if (GUILayout.Button(OculusTex, GUILayout.Width(BUTTON_WIDTH), GUILayout.Height(BUTTON_HEIGHT)))
+        GUILayout.BeginArea(new Rect(oculusX, oculusY, oculusX + .7f * BUTTON_WIDTH, oculusY + .7f * BUTTON_HEIGHT));
+        if (GUILayout.Button(OculusTex, GUILayout.Width(.7f * BUTTON_WIDTH), GUILayout.Height(.7f * BUTTON_HEIGHT)))
             {
                 newIsOculus = true;
             }
@@ -123,8 +132,12 @@ public class UIManager : MonoBehaviour {
         //}
         //if (isOculus)
         //{
-            GUILayout.BeginArea(new Rect(Screen.width - 2 * BUTTON_WIDTH, Screen.height - BUTTON_HEIGHT, BUTTON_WIDTH, BUTTON_HEIGHT));
-            if (GUILayout.Button(StandardTex, GUILayout.Width(BUTTON_WIDTH), GUILayout.Height(BUTTON_HEIGHT)))
+
+            float regularX = (1 - .14f) * Screen.width;
+            float regularY = .84f * Screen.height;
+
+            GUILayout.BeginArea(new Rect(regularX, regularY, regularX + .7f * BUTTON_WIDTH, regularY + .7f * BUTTON_HEIGHT));
+            if (GUILayout.Button(StandardTex, GUILayout.Width(.7f * BUTTON_WIDTH), GUILayout.Height(.7f * BUTTON_HEIGHT)))
             {
                 newIsOculus = false;
             }
