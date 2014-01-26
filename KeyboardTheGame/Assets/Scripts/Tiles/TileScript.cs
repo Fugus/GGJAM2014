@@ -19,6 +19,9 @@ public class TileScript : MonoBehaviour {
 	protected bool hasAppliedTriggerAction = false;
     bool firstUpdate = true;
 
+    QuickTimer wiggleTimer;
+    GameObject player;
+
     public void OnUnfog()
     {
         hasBeenVisited = true;
@@ -62,6 +65,10 @@ public class TileScript : MonoBehaviour {
         UIManager_ = GameObject.Find("/Managers").GetComponent<UIManager>();
         LevelManager_ = GameObject.Find("/Managers").GetComponent<LevelManager>();
         TileManager_ = GameObject.Find("/Managers").GetComponent<TileManager>();
+
+        wiggleTimer = new QuickTimer();
+
+        player = GameObject.Find("Player");
     }
 
 
@@ -123,6 +130,9 @@ public class TileScript : MonoBehaviour {
         if (x < 2 && y >= 12)
             return null;
 
+        if (LevelManager_.levels[TileManager_.currentLevel][x][y].type == Tile.TYPES.Blank)
+            return null;
+
         return LevelManager_.levels[TileManager_.currentLevel][x][y];
     }
 
@@ -134,8 +144,34 @@ public class TileScript : MonoBehaviour {
         spawnedFOW = null;
     }
 
+    public void Wiggle()
+    {
+        wiggleTimer.Start(0.3f);
+    }
+
 	// Update is called once per frame
 	protected void Update () {
+
+        if (wiggleTimer.IsStarted())
+        {
+            Vector3 positionTile = transform.localPosition;
+            Vector3 positionPlayer = player.transform.localPosition;
+
+            float ratio = 0.5f * wiggleTimer.GetElapsedTime() / 0.1f - 0.7f;
+            transform.Translate(new Vector3(0f, 0f, 0.4f) * ratio);
+            player.transform.Translate(new Vector3(0f, 0f, 0.4f) * ratio);
+
+            if (wiggleTimer.IsElapsed())
+            {
+                wiggleTimer.Stop();
+
+                positionTile.z = 0;
+                positionPlayer.z = 0;
+                transform.localPosition = positionTile;
+                player.transform.localPosition = positionPlayer;
+            }
+        }
+
         if (!hasBeenVisited && firstUpdate && shouldFog)
         {
             firstUpdate = false;

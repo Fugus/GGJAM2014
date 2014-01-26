@@ -10,6 +10,8 @@ public class PlayerControl : MonoBehaviour
     public float timeToNextTile = 0.2f;
     public float tileRadius = 20.0f;
 
+    QuickTimer waitingTimer;
+
 	bool jumpDone = true;
 
     public enum MovementDirection
@@ -64,6 +66,7 @@ public class PlayerControl : MonoBehaviour
     {
         TileManager_ = GameObject.Find("/Managers").GetComponent<TileManager>();
         targetPosition = TileManager_.GetTilePosition(3, 2);
+        waitingTimer = new QuickTimer();
     }
 
 	public void Reset()
@@ -297,9 +300,10 @@ public class PlayerControl : MonoBehaviour
         if (toTarget.magnitude < 0.01f && !canReadInput)
         {
             // At destination
-            if (jumpDone)
+            if (jumpDone && waitingTimer.IsStarted() && waitingTimer.IsElapsed())
             {
                 //StopSound(RecordableSounds.jumping);
+                waitingTimer.Stop();
                 canReadInput = true;
                 EnterCurrentTile();
             }
@@ -310,6 +314,13 @@ public class PlayerControl : MonoBehaviour
 
     public void JumpDone()
     {
+        TileScript tileScript = currentTile.GetComponent<TileScript>();
+        if (tileScript != null)
+        {
+            tileScript.Wiggle();
+            waitingTimer.Start(0.3f);
+        }
+
         jumpDone = true;
     }
 
