@@ -175,7 +175,10 @@ public class TileScript : MonoBehaviour {
         if (!hasBeenVisited && firstUpdate && shouldFog)
         {
             firstUpdate = false;
-            AddFOW();
+            if (GetTile().type != Tile.TYPES.Blank)
+            {
+                AddFOW();
+            }
         }
 
         if(hasAppliedTriggerAction)
