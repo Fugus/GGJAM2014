@@ -508,6 +508,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   emptyTile: {fileID: 100000, guid: a08018e15f3ce0d4ab3c5eb097549ec7, type: 2}
+  currentLevel: 
 --- !u!1 &1906834153
 GameObject:
   m_ObjectHideFlags: 0
