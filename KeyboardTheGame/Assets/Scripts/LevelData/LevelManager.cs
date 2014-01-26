@@ -89,10 +89,10 @@ public class LevelManager : MonoBehaviour {
 
 		// Glade
 		tempTypes = new string[4, 12] {
-			{"P", "T", "P", "P", "P", "P", "P", "G", "P", "P", "P", "G"},
-			{"B", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P"},
-			{"P", "P", "P", "G", "P", "P", "P", "P", "P", "P", "P", "P"},
-			{"P", "P", "P", "P", "P", "G", "P", "P", "P", "P", "", ""}
+			{"P", "T", "P", "B", "B", "P", "P", "G", "P", "P", "P", "G"},
+			{"B", "B", "T", "C", "B", "R", "S", "P", "P", "B", "P", "P"},
+			{"B", "B", "P", "G", "P", "P", "P", "B", "B", "B", "B", "T"},
+			{"B", "P", "P", "P", "P", "G", "P", "B", "B", "B", "", ""}
 		};
 		ProcessLevelData("Glade", "Tranquil Glade", tempTypes);
 		levels["Glade"][3][5].metadata = "Basin";
@@ -100,18 +100,37 @@ public class LevelManager : MonoBehaviour {
 		levels["Glade"][0][7].metadata = "Way";
 		levels["Glade"][0][11].metadata = "Inner";
 		levels["Glade"][0][1].metadata = "Walk across the keyboard with your fingers.";
+		levels["Glade"][1][2].metadata = "Sometimes, with a little effort, we can push back the veil of ignorance.";
+		levels["Glade"][2][11].metadata = "The hardest journeys can be the most rewarding.";
+
+		levels["Glade"][1][6].metadata = "victory"; // temp for the demo
+
+		/*levels["Glade"][2][3].walls[2] = true;
+		levels["Glade"][2][3].walls[3] = true;
+		levels["Glade"][2][3].walls[4] = true;
+		levels["Glade"][2][3].walls[5] = true;
+		levels["Glade"][3][4].walls[0] = true;
+		levels["Glade"][3][4].walls[5] = true;
+		levels["Glade"][3][5].walls[0] = true;
+		levels["Glade"][3][5].walls[1] = true;
+		levels["Glade"][3][5].walls[5] = true;*/
+
+		//levels["Glade"][0][0].walls[1] = true;
+		//levels["Glade"][0][1].walls[1] = true;
 
 		// Basin
 		tempTypes = new string[4, 12] {
-			{"G", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P"},
-			{"P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "G", "P"},
-			{"P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P"},
-			{"P", "P", "P", "P", "P", "G", "P", "P", "P", "P", "", ""}
+			{"G", "P", "P", "P", "P", "P", "B", "B", "B", "B", "P", "P"},
+			{"P", "P", "P", "P", "P", "P", "P", "B", "P", "P", "G", "P"},
+			{"P", "P", "B", "P", "P", "P", "P", "T", "S", "P", "P", "P"},
+			{"P", "P", "B", "B", "P", "G", "P", "B", "B", "P", "", ""}
 		};
 		ProcessLevelData("Basin", "Dusty Basin", tempTypes);
 		levels["Basin"][3][5].metadata = "Glade";
 		levels["Basin"][0][0].metadata = "Inner";
 		levels["Basin"][1][10].metadata = "Indiana";
+		levels["Basin"][2][7].metadata = "That gateway sure was quiet...";
+		levels["Basin"][2][8].metadata = "teleporting";
 
 		// Indiana
 		tempTypes = new string[4, 12] {

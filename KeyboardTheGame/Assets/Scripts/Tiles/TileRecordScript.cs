@@ -47,7 +47,7 @@ public class TileRecordScript : TileScript {
 				UIManager_.mainTextString = "" + timer.GetElapsedTime().ToString("F1") + " seconds.";
 			}
 			
-			if (Microphone.IsRecording(null) && timer.IsElapsed()) //timer.IsStarted() && timer.IsElapsed()
+			if (timer.IsStarted() && timer.IsElapsed()) //timer.IsStarted() && timer.IsElapsed() //Microphone.IsRecording(null) && timer.IsElapsed()
 			{
 				StopRecording();
 				PlayerControl_.AddSound(soundToRecord, recordedClip);
