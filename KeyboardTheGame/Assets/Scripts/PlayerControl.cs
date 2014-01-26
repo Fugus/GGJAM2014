@@ -44,20 +44,23 @@ public class PlayerControl : MonoBehaviour
 	{
 		// Setting up references.
 		anim = GetComponentInChildren<Animator>();
-		Reset ();
+		sounds = new Dictionary<RecordableSounds, AudioClip>();
 	}
 
     void Start()
     {
         TileManager_ = GameObject.Find("/Managers").GetComponent<TileManager>();
         targetPosition = TileManager_.GetTilePosition(3, 2);
-
-        //targetPosition = transform.position;
     }
 
 	public void Reset()
 	{
 		sounds = new Dictionary<RecordableSounds, AudioClip>();
+		currentTile = null;
+		// position on initial tile
+		GameObject.Find("/Player").transform.position = Vector3.zero;
+		unfogFirstTile = false;
+		//EnterCurrentTile();
 	}
 
     Vector2 GetDirection(MovementDirection mvtDirection)

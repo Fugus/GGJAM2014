@@ -42,7 +42,8 @@ public class FogOfWarScript : MonoBehaviour
 		if (transform.parent != null)
 		{
 			particleSystem.Stop();
-			transform.parent.renderer.material = oldMaterial;
+			if(oldMaterial != null)
+				transform.parent.renderer.material = oldMaterial;
 		}
 	}
 
