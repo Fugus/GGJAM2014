@@ -8,6 +8,8 @@ public class PlayerControl : MonoBehaviour
     public float timeToNextTile = 0.2f;
     public float tileRadius = 20.0f;
 
+    bool jumpDone = true;
+
     public enum RecordableSounds
     {
         Walking,
@@ -186,6 +188,8 @@ public class PlayerControl : MonoBehaviour
 
             rigidbody.AddForce((targetPosition - transform.position) / (timeToNextTile * Time.fixedDeltaTime));
             PlaySound(RecordableSounds.Walking);
+            anim.SetTrigger("jump");
+            jumpDone = false;
         }
 
         Vector3 toTarget = targetPosition - transform.position;
@@ -193,14 +197,20 @@ public class PlayerControl : MonoBehaviour
         if (toTarget.magnitude < 0.01f && !canReadInput)
         {
             // At destination
-            StopSound(RecordableSounds.Walking);
-            canReadInput = true;
-            EnterCurrentTile();
+            if (jumpDone)
+            {
+                StopSound(RecordableSounds.Walking);
+                canReadInput = true;
+                EnterCurrentTile();
+            }
             rigidbody.velocity = Vector3.zero;
             rigidbody.position = targetPosition;
         }
-        Debug.Log(rigidbody.velocity.magnitude.ToString());
-        anim.SetFloat("speed", rigidbody.velocity.magnitude);
 	}
+
+    public void JumpDone()
+    {
+        jumpDone = true;
+    }
 
 }

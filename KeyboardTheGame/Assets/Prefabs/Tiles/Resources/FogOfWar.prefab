@@ -40,7 +40,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83b4dccdc95feba45b5b4f68dc12b5c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  materialToSubstitute: {fileID: 2100000, guid: f26db1198f132d74cad9a480445a7293,
+  materialToSubstitute: {fileID: 2100000, guid: c3c61665319c5a94eb4015d91c534164,
     type: 2}
 --- !u!198 &19800000
 ParticleSystem:

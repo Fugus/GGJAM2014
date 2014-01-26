@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: f5f3021f0e4460e42af3f7d3e135dfeb
+guid: 0f4d40f270b43ea418cb1b4130686cfe
 ModelImporter:
   serializedVersion: 15
   fileIDToRecycleName:
@@ -8,13 +8,10 @@ ModelImporter:
     400000: Box003
     400002: //RootNode
     2300000: Box003
-    2300002: //RootNode
     3300000: Box003
-    3300002: //RootNode
     4300000: C
     4300002: Box003
-    7400000: CJump
-    7400002: CIdle
+    7400000: CJumptst2
     9500000: //RootNode
     13700000: //RootNode
   materials:
@@ -33,40 +30,10 @@ ModelImporter:
     extraExposedTransformPaths: []
     clipAnimations:
     - serializedVersion: 16
-      name: CJump
+      name: CJumptst2
       takeName: Take 001
-      firstFrame: 0
+      firstFrame: 10.1000004
       lastFrame: 24
-      wrapMode: 0
-      orientationOffsetY: 0
-      level: 0
-      cycleOffset: 0
-      loop: 0
-      loopTime: 1
-      loopBlend: 0
-      loopBlendOrientation: 0
-      loopBlendPositionY: 0
-      loopBlendPositionXZ: 0
-      keepOriginalOrientation: 0
-      keepOriginalPositionY: 1
-      keepOriginalPositionXZ: 0
-      heightFromFeet: 0
-      mirror: 0
-      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
-      curves: []
-      events: []
-      transformMask:
-      - path: 
-        weight: 1
-      - path: Box003
-        weight: 1
-      maskType: 0
-      maskSource: {instanceID: 0}
-    - serializedVersion: 16
-      name: CIdle
-      takeName: Take 001
-      firstFrame: 24
-      lastFrame: 60
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -84,7 +51,14 @@ ModelImporter:
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
-      events: []
+      events:
+      - time: .238601223
+        functionName: JumpDone
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       transformMask:
       - path: 
         weight: 1
