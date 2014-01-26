@@ -36,9 +36,10 @@ public class TileManager : MonoBehaviour
 			{
 				if (j == 3 && i >= 10) break;
 				Tile tile = GetComponent<LevelManager>().levels[name][j][i];
-				
+
 				GameObject prefab = Resources.Load<GameObject>(tile.type.ToString());
-				GameObject addedTile = GameObject.Instantiate(prefab, rowOrigin + Vector3.right * i * tileWidth, emptyTile.transform.rotation) as GameObject;
+                Vector3 tilePosition = rowOrigin + Vector3.right * i * tileWidth;
+                GameObject addedTile = GameObject.Instantiate(prefab, tilePosition, emptyTile.transform.rotation) as GameObject;
 				TileScript tileScript = addedTile.GetComponent<TileScript>();
                 if (tileScript != null)
                 {
@@ -55,6 +56,8 @@ public class TileManager : MonoBehaviour
 		}
 
 		currentLevel = name;
+
+        GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerControl>().unfogFirstTile = false;
 	}
 
 	public Vector3 GetTilePosition(int row, int column)

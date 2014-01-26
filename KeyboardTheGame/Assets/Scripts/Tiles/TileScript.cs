@@ -18,6 +18,14 @@ public class TileScript : MonoBehaviour {
 	protected bool hasAppliedTriggerAction = false;
     bool firstUpdate = true;
 
+    public void OnUnfog()
+    {
+        hasBeenVisited = true;
+        RemoveFOW();
+        StartCoroutine(broadcastUnfogNearby());
+    }
+    
+
 	public void OnEnterTile()
 	{
 		hasAppliedTriggerAction = true;

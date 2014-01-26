@@ -30,7 +30,7 @@ public class PlayerControl : MonoBehaviour
 
 	private Animator anim;					// Reference to the player's animator component.
 
-    bool enteredFirstTile = false;
+    public bool unfogFirstTile = false;
     bool canReadInput = true;
     bool buttonPressed = false;
     MovementDirection direction;
@@ -91,10 +91,10 @@ public class PlayerControl : MonoBehaviour
 
     void Update()
     {
-        if (!enteredFirstTile)
+        if (!unfogFirstTile && currentTile != null)
         {
-            EnterCurrentTile();
-            enteredFirstTile = true;
+            currentTile.BroadcastMessage("OnUnfog");
+            unfogFirstTile = true;
         }
 
         if (canReadInput)

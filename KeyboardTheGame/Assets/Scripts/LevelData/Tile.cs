@@ -9,8 +9,9 @@ public class Tile
 		Blank, // an empty tile
 		Text, // a tile that triggers text when stepped on
 		Labyrinth, // a tile with an arrow that rotates when you step on it
-		Gateway // a gateway to another level
-	}
+        Gateway, // a gateway to another level
+        RTile // the tile with R
+}
 	public TYPES type;
 
 	public string metadata;
