@@ -10,6 +10,8 @@ public class TileTextScript : TileScript {
 			hasAppliedTriggerAction = false;
 			UIManager_.mainTextString = metadata;
 		}
+
+        base.Update();
 	}
 
 }

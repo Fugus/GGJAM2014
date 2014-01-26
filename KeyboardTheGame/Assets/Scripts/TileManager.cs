@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class TileManager : MonoBehaviour
 {
@@ -39,7 +40,13 @@ public class TileManager : MonoBehaviour
 				GameObject prefab = Resources.Load<GameObject>(tile.type.ToString());
 				GameObject addedTile = GameObject.Instantiate(prefab, rowOrigin + Vector3.right * i * tileWidth, emptyTile.transform.rotation) as GameObject;
 				TileScript tileScript = addedTile.GetComponent<TileScript>();
-				if(tileScript != null) tileScript.metadata = tile.metadata;
+                if (tileScript != null)
+                {
+                    tileScript.metadata = tile.metadata;
+                    tileScript.TileIndexX = j;
+                    tileScript.TileIndexY = i;
+                }
+
 				addedTile.transform.parent = tilesObject.transform;
 			}
 			rowOrigin.x += tileWidth / 2.0f;
@@ -48,5 +55,4 @@ public class TileManager : MonoBehaviour
 
 		currentLevel = name;
 	}
-
 }

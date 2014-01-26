@@ -18,6 +18,8 @@ public class TileLabyrinthScript : TileScript {
 			// set arrow direction to random other position
 			transform.Rotate(new Vector3(0,0,Mathf.Round(Random.Range(60, 300)/60)*60));
 		}
+
+        base.Update();
 	}
 
 }
