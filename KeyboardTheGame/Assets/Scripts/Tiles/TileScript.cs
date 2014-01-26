@@ -87,7 +87,7 @@ public class TileScript : MonoBehaviour {
         switch(dir)
         {
             case PlayerControl.MovementDirection.TopLeft:
-                x = TileIndexX + 1;
+                x = TileIndexX - 1;
                 y = TileIndexY;
                 break;
             case PlayerControl.MovementDirection.TopRight:

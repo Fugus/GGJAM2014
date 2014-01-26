@@ -70,10 +70,11 @@ public class PlayerControl : MonoBehaviour
 	{
         sounds = new Dictionary<RecordableSounds, AudioClip>();
 		currentTile = null;
-		// position on initial tile
+		// position on initial tilee
 		GameObject.Find("/Player").transform.position = Vector3.zero;
 		unfogFirstTile = false;
 		//EnterCurrentTile();
+        rigidbody.WakeUp();
 
     }
 
@@ -253,12 +254,32 @@ public class PlayerControl : MonoBehaviour
         currentTile.BroadcastMessage("OnEnterTile");
     }
 
+    void OrientToDirection(Vector2 movementDirection)
+    {
+        GameObject playerVisuals = GameObject.FindGameObjectWithTag("PlayerVisuals");
+
+        float angle = Vector3.Angle(Vector3.right, new Vector3(movementDirection.x, movementDirection.y, 0.0f));
+        if (Vector3.Dot(Vector3.up, new Vector3(movementDirection.x, movementDirection.y, 0.0f)) < 0.0f)
+        {
+            angle *= -1;
+        }
+
+        Quaternion newRot = playerVisuals.transform.rotation;
+        Vector3 newEulerAngles = newRot.eulerAngles;
+        newEulerAngles.z = 60.0f + Mathf.Round(angle / 60.0f) * 60.0f;
+        newRot.eulerAngles = newEulerAngles;
+        playerVisuals.transform.rotation = newRot;
+    }
+
     void FixedUpdate()
 	{
         if (buttonPressed)
         {
             targetPosition = transform.position;
             Vector2 movementDirection = GetDirection(direction);
+
+            OrientToDirection(movementDirection);
+
             movementDirection *= TileManager.tileWidth;
             targetPosition.x += movementDirection.x;
             targetPosition.y += movementDirection.y;

@@ -3,12 +3,8 @@ using System.Collections;
 
 public class ForwardToParentJumpScript : MonoBehaviour {
 
-    public void JumpDone()
+    public void InitialJumpDone()
     {
-        PlayerControl playrControlScript = transform.parent.GetComponent<PlayerControl>();
-        if (playrControlScript)
-        {
-            playrControlScript.JumpDone();
-        }
+        gameObject.SendMessageUpwards("JumpDone");
     }
 }
