@@ -14,7 +14,7 @@ public class TileSeeTowerScript : TileScript {
 			waitingForReenable = GameObject.FindGameObjectsWithTag("FOW");
 			foreach(GameObject obj in waitingForReenable)
 			{
-				obj.SetActive(false);
+				obj.GetComponent<FogOfWarScript>().DisableFOW();
 			}
 		}
 
@@ -26,7 +26,7 @@ public class TileSeeTowerScript : TileScript {
 		// re-enable fog of war
 		foreach(GameObject obj in waitingForReenable)
 		{
-			if(obj != null) obj.SetActive(true);
+			if(obj != null) obj.GetComponent<FogOfWarScript>().EnableFOW();
 		}
 		waitingForReenable = null;
 	}

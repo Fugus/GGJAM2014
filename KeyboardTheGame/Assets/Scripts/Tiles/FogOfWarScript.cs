@@ -13,25 +13,21 @@ public class FogOfWarScript : MonoBehaviour
         if (firstUpdate)
         {
             firstUpdate = false;
-            if (transform.parent != null)
-            {
-                oldMaterial = transform.parent.renderer.material;
-                transform.parent.renderer.material = materialToSubstitute;
-                particleSystem.Play();
-            }
+			EnableFOW();
         }
     }
 
     public void OnDisable()
     {
-        if (transform.parent != null)
-        {
-            particleSystem.Stop();
-            transform.parent.renderer.material = oldMaterial;
-        }
+		DisableFOW();
     }
 
 	public void OnEnable()
+	{
+		EnableFOW();
+	}
+
+	public void EnableFOW()
 	{
 		if (transform.parent != null)
 		{
@@ -40,4 +36,14 @@ public class FogOfWarScript : MonoBehaviour
 			transform.parent.renderer.material = materialToSubstitute;
 		}
 	}
+
+	public void DisableFOW()
+	{
+		if (transform.parent != null)
+		{
+			particleSystem.Stop();
+			transform.parent.renderer.material = oldMaterial;
+		}
+	}
+
 }
