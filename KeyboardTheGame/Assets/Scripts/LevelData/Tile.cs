@@ -11,7 +11,8 @@ public class Tile
 		Labyrinth, // a tile with an arrow that rotates when you step on it
         Gateway, // a gateway to another level
         RTile, // the tile with R
-		SeeTower // the tower where C can see
+		SeeTower, // the tower where C can see
+		Record // where the player can record a new in game sound
 	}
 	public TYPES type;
 

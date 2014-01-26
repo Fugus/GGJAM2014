@@ -10,15 +10,7 @@ public class PlayerControl : MonoBehaviour
     public float timeToNextTile = 0.2f;
     public float tileRadius = 20.0f;
 
-    bool jumpDone = true;
-
-    public enum RecordableSounds
-    {
-        Walking,
-        GuitarSolo
-    }
-
-    public Dictionary<RecordableSounds, AudioClip> sounds;
+	bool jumpDone = true;
 
     enum MovementDirection
     {
@@ -40,11 +32,32 @@ public class PlayerControl : MonoBehaviour
 
     GameObject currentTile;
 
+	public enum RecordableSounds
+	{
+		jumping,
+		teleporting,
+		surveying,
+		victory,
+		reading,
+		confused
+	}
+	
+	public Dictionary<RecordableSounds, AudioClip> sounds;
+	public Dictionary<RecordableSounds, int> soundLengths;
+
 	void Awake()
 	{
 		// Setting up references.
 		anim = GetComponentInChildren<Animator>();
 		sounds = new Dictionary<RecordableSounds, AudioClip>();
+		// Set up sound lengths, these really should be stored elsewhere but whatever its been about 46 hours since I slept. If it works it works. Plus, we can make Fus Roh DA noises if I do this.
+		soundLengths = new Dictionary<RecordableSounds, int>();
+		soundLengths.Add(RecordableSounds.jumping, 1);
+		soundLengths.Add(RecordableSounds.teleporting, 3);
+		soundLengths.Add(RecordableSounds.surveying, 2);
+		soundLengths.Add(RecordableSounds.victory, 6);
+		soundLengths.Add(RecordableSounds.reading, 1);
+		soundLengths.Add(RecordableSounds.confused, 1);
 	}
 
     void Start()
@@ -181,7 +194,8 @@ public class PlayerControl : MonoBehaviour
 
     public void AddSound(RecordableSounds sound, AudioClip clip)
     {
-        sounds.Add(sound, clip);
+		if(sounds.ContainsKey(sound)) sounds[sound] = clip;
+		else sounds.Add(sound, clip);
     }
 
     public void PlaySound(RecordableSounds sound)
@@ -237,7 +251,7 @@ public class PlayerControl : MonoBehaviour
             jumpDone = false;
 
             rigidbody.AddForce((targetPosition - transform.position) / (timeToNextTile * Time.fixedDeltaTime));
-            PlaySound(RecordableSounds.Walking);
+            PlaySound(RecordableSounds.jumping);
             anim.SetTrigger("jump");
         }
 
@@ -248,7 +262,7 @@ public class PlayerControl : MonoBehaviour
             // At destination
             if (jumpDone)
             {
-                StopSound(RecordableSounds.Walking);
+                //StopSound(RecordableSounds.jumping);
                 canReadInput = true;
                 EnterCurrentTile();
             }

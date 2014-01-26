@@ -16,6 +16,7 @@ public class TileSeeTowerScript : TileScript {
 			{
 				obj.GetComponent<FogOfWarScript>().DisableFOW();
 			}
+			GameObject.Find ("/Player").GetComponent<PlayerControl>().PlaySound(PlayerControl.RecordableSounds.surveying);
 		}
 
         base.Update();

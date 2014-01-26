@@ -30,7 +30,7 @@ public class QuickTimer
     {
         if (!isStarted)
         {
-            Debug.LogError("Calling IsElapsed() on a stopped QuickTimer");
+            Debug.LogError("Calling GetElapsedTime() on a stopped QuickTimer");
             return 0.0f;
         }
         
@@ -42,7 +42,7 @@ public class QuickTimer
 		if (!isStarted)
 		{
 			Debug.LogError("Calling IsElapsed() on a stopped QuickTimer");
-			return false;
+			return true;
 		}
 		return Time.time > endTime;
 	}

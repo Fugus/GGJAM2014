@@ -9,6 +9,7 @@ public class TileTextScript : TileScript {
 		{
 			hasAppliedTriggerAction = false;
 			UIManager_.mainTextString = metadata;
+			GameObject.Find ("/Player").GetComponent<PlayerControl>().PlaySound(PlayerControl.RecordableSounds.reading);
 		}
 
         base.Update();
