@@ -14,12 +14,12 @@ public class TileManager : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+		Debug.Log (GetTilePosition(3, 2));
     }
 
     // Update is called once per frame
     void Update()
     {
-
     }
 
 	public void LoadLevel(string name)
@@ -55,4 +55,13 @@ public class TileManager : MonoBehaviour
 
 		currentLevel = name;
 	}
+
+	public Vector3 GetTilePosition(int row, int column)
+	{
+		return new Vector3(
+			column * (tileWidth / 2.0f),
+			row * (-tileHeight),
+			0);
+	}
+
 }
