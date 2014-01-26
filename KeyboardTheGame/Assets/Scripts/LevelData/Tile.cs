@@ -10,11 +10,12 @@ public class Tile
 		Text, // a tile that triggers text when stepped on
 		Labyrinth, // a tile with an arrow that rotates when you step on it
         Gateway, // a gateway to another level
-        RTile // the tile with R
-}
+        RTile, // the tile with R
+		SeeTower // the tower where C can see
+	}
 	public TYPES type;
 
-    public bool[] walls = { false, false, false, false, false, false};
+    public bool[] walls = {false, false, false, false, false, false};
 
 	public string metadata;
     public bool isFogged = true;

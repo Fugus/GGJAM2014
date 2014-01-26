@@ -33,9 +33,9 @@ public class TileScript : MonoBehaviour {
         hasBeenVisited = true;
         RemoveFOW();
 
-        Debug.Log("Broadcasting from " + TileIndexX + " " + TileIndexY);
+//       Debug.Log("Broadcasting from " + TileIndexX + " " + TileIndexY);
         StartCoroutine(broadcastUnfogNearby());
-        Debug.Log("***************");
+//       Debug.Log("***************");
     }
     
     IEnumerator broadcastUnfogNearby()
@@ -52,7 +52,7 @@ public class TileScript : MonoBehaviour {
     {
         float distanceToPosition = (transform.position - position).magnitude;
         if (distanceToPosition < 1.5f * TileManager.tileWidth)
-            Debug.Log("inrange " + TileIndexX + " " + TileIndexY);
+//            Debug.Log("inrange " + TileIndexX + " " + TileIndexY);
 
         if (spawnedFOW != null && distanceToPosition < 1.5f * TileManager.tileWidth)
         {

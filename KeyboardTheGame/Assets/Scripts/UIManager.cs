@@ -60,9 +60,9 @@ public class UIManager : MonoBehaviour {
 		
 		GUILayout.BeginArea(new Rect(0, Screen.height - BOTTOM_BAR_HEIGHT, Screen.width, BOTTOM_BAR_HEIGHT)); // Bottom bar
 			GUILayout.BeginHorizontal();
-			GUILayout.Button("Restart", GUILayout.Width(BUTTON_WIDTH));
+			if(GUILayout.Button("Restart", GUILayout.Width(BUTTON_WIDTH))) ResetGame();
 			GUILayout.Label("BLAH BLAH BIG LABEL", GUILayout.Width(Screen.width - BUTTON_WIDTH - BUTTON_WIDTH));
-			GUILayout.Button("Exit", GUILayout.Width(BUTTON_WIDTH));
+			if(GUILayout.Button("Exit", GUILayout.Width(BUTTON_WIDTH))) QuitGame();
 			GUILayout.EndHorizontal();
 		GUILayout.EndArea(); // Bottom bar end
 
@@ -74,7 +74,12 @@ public class UIManager : MonoBehaviour {
 		// Refresh LevelManager
 		GetComponent<LevelManager>().Reset();
 		// Refresh the Player
+		
+	}
 
+	public void QuitGame()
+	{
+		Application.Quit();
 	}
 
 }

@@ -150,7 +150,7 @@ public class PlayerControl : MonoBehaviour
             TileScript tileScript = currentTile.GetComponent<TileScript>();
             if (tileScript != null)
             {
-                Debug.Log("Current : " + tileScript.TileIndexX + " " + tileScript.TileIndexY);
+                //Debug.Log("Current : " + tileScript.TileIndexX + " " + tileScript.TileIndexY);
 
                 switch (direction)
                 {

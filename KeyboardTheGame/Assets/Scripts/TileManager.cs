@@ -14,7 +14,7 @@ public class TileManager : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-		Debug.Log (GetTilePosition(3, 2));
+//		Debug.Log (GetTilePosition(3, 2));
     }
 
     // Update is called once per frame
