@@ -42,13 +42,19 @@ public class PlayerControl : MonoBehaviour
 	{
 		// Setting up references.
 		anim = GetComponentInChildren<Animator>();
-        sounds = new Dictionary<RecordableSounds, AudioClip>();
+		Reset ();
 	}
 
     void Start()
     {
-        targetPosition = transform.position;
+		targetPosition = GameObject.Find("/Managers").GetComponent<TileManager>().GetTilePosition(3, 2);
+        //targetPosition = transform.position;
     }
+
+	public void Reset()
+	{
+		sounds = new Dictionary<RecordableSounds, AudioClip>();
+	}
 
     Vector2 GetDirection(MovementDirection mvtDirection)
     {

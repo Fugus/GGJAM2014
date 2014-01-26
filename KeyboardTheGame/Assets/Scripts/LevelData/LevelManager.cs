@@ -8,14 +8,19 @@ public class LevelManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		levels = new Dictionary<string, Level>();
-		BuildLevelsFromData();
-		GetComponent<TileManager>().LoadLevel("First");
+		Reset();
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		
+	}
+
+	public void Reset()
+	{
+		levels = new Dictionary<string, Level>();
+		BuildLevelsFromData();
+		GetComponent<TileManager>().LoadLevel("First");
 	}
 
 	private void BuildLevelsFromData()

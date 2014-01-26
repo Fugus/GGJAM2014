@@ -42,7 +42,7 @@ public class UIManager : MonoBehaviour {
 	public void ResetGame()
 	{
 		// Refresh LevelManager
-
+		GetComponent<LevelManager>().Reset();
 	}
 
 }
