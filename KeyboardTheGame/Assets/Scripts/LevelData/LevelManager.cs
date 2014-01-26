@@ -40,6 +40,12 @@ public class LevelManager : MonoBehaviour {
 		levels["First"][1][8].metadata = "I print text on the screen!";
 		levels["First"][1][9].metadata = "BUT SO DO I BITCHES!";
 		levels["First"][3][0].metadata = "Antechamber";
+        levels["First"][1][8].walls[0] = true;
+        levels["First"][1][8].walls[1] = true;
+        levels["First"][1][8].walls[2] = true;
+        levels["First"][1][8].walls[3] = true;
+        levels["First"][1][8].walls[4] = true;
+        levels["First"][1][8].walls[5] = true;
 
 		// Antechamber
 		tempTypes = new string[4, 12] {

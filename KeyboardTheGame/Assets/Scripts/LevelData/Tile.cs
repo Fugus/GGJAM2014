@@ -14,6 +14,8 @@ public class Tile
 }
 	public TYPES type;
 
+    public bool[] walls = { false, false, false, false, false, false};
+
 	public string metadata;
     public bool isFogged = true;
 

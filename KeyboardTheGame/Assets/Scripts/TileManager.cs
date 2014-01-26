@@ -22,6 +22,22 @@ public class TileManager : MonoBehaviour
     {
     }
 
+    public bool HasWall(int wallIndex, int x, int y)
+    {
+        if (y < 0)
+            return true;
+        if (x < 0 || x > 3)
+            return true;
+        if (x == 3 && y >= 10)
+            return true;
+        if (x < 3 && y >= 12)
+            return true;
+
+        Tile tile = GetComponent<LevelManager>().levels[currentLevel][x][y];
+
+        return tile.walls[wallIndex];
+    }
+
 	public void LoadLevel(string name)
 	{
 		GameObject tilesObject = GameObject.Find ("/Tiles");
@@ -48,6 +64,7 @@ public class TileManager : MonoBehaviour
                     tileScript.TileIndexY = i;
                     tileScript.shouldFog = tile.isFogged;
                 }
+                AddWalls(tile, addedTile);
 
 				addedTile.transform.parent = tilesObject.transform;
 			}
@@ -67,5 +84,24 @@ public class TileManager : MonoBehaviour
 			row * (-tileHeight),
 			0);
 	}
+
+    void AddWalls(Tile tile, GameObject addedTile)
+    {
+        GameObject wallPrefab = Resources.Load<GameObject>("glassWallPrefab");
+        Vector3 tilePosition = Vector3.right * tileWidth / 2.0f;
+        Quaternion wallRotation = wallPrefab.transform.rotation;
+
+        Quaternion sideRot = Quaternion.AngleAxis(60, Vector3.up);
+
+        for (int i = 0; i < 6; ++i)
+        {
+            if (tile.walls[i])
+            {
+                GameObject addedWall = GameObject.Instantiate(wallPrefab, addedTile.transform.position + wallRotation * tilePosition, wallRotation) as GameObject;
+                addedWall.transform.parent = addedTile.transform;
+                wallRotation *= sideRot;
+            }
+        }
+    }
 
 }
