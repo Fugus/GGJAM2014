@@ -185,11 +185,11 @@ public class PlayerControl : MonoBehaviour
             targetPosition.y += movementDirection.y;
             buttonPressed = false;
             canReadInput = false;
+            jumpDone = false;
 
             rigidbody.AddForce((targetPosition - transform.position) / (timeToNextTile * Time.fixedDeltaTime));
             PlaySound(RecordableSounds.Walking);
             anim.SetTrigger("jump");
-            jumpDone = false;
         }
 
         Vector3 toTarget = targetPosition - transform.position;

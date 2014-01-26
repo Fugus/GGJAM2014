@@ -4,8 +4,8 @@ using System.Collections.Generic;
 
 public class TileManager : MonoBehaviour
 {
-    public static float tileWidth = 35.4f / 2;
-    public static float tileHeight = 15f;
+    public static float tileWidth = 35.4f / 2 + 1.7f;
+    public static float tileHeight = 15f + 1.7f;
 
     public GameObject emptyTile;
 
@@ -45,6 +45,7 @@ public class TileManager : MonoBehaviour
                     tileScript.metadata = tile.metadata;
                     tileScript.TileIndexX = j;
                     tileScript.TileIndexY = i;
+                    tileScript.shouldFog = tile.isFogged;
                 }
 
 				addedTile.transform.parent = tilesObject.transform;

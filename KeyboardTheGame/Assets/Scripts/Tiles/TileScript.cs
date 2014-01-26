@@ -3,13 +3,16 @@ using System.Collections;
 
 public class TileScript : MonoBehaviour {
 
-	protected UIManager UIManager_;
-	public string metadata = "";
+    protected UIManager UIManager_;
+    protected LevelManager LevelManager_;
+    protected TileManager TileManager_;
+    public string metadata = "";
 
     public int TileIndexX;
     public int TileIndexY;
 
     public bool hasBeenVisited = false;
+    public bool shouldFog = false;
     GameObject spawnedFOW;
 
 	protected bool hasAppliedTriggerAction = false;
@@ -44,6 +47,8 @@ public class TileScript : MonoBehaviour {
     protected void Start()
     {
         UIManager_ = GameObject.Find("/Managers").GetComponent<UIManager>();
+        LevelManager_ = GameObject.Find("/Managers").GetComponent<LevelManager>();
+        TileManager_ = GameObject.Find("/Managers").GetComponent<TileManager>();
     }
 
 
@@ -58,12 +63,14 @@ public class TileScript : MonoBehaviour {
 
     void RemoveFOW()
     {
+        shouldFog = false;
+        LevelManager_.levels[TileManager_.currentLevel][TileIndexX][TileIndexY].isFogged = false;
         GameObject.Destroy(spawnedFOW);
     }
 
 	// Update is called once per frame
 	protected void Update () {
-        if (!hasBeenVisited && firstUpdate)
+        if (!hasBeenVisited && firstUpdate && shouldFog)
         {
             firstUpdate = false;
             AddFOW();

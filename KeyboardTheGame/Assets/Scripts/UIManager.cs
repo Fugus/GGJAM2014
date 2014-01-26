@@ -34,7 +34,7 @@ public class UIManager : MonoBehaviour {
 
 		if(resetRect == null)
 			resetRect = new Rect(0, 0, 100, 20);
-		if(GUI.Button(resetRect, "Reset")) {
+		if(GUI.Button(resetRect.GetValueOrDefault(), "Reset")) {
 			ResetGame();
 		};
 	}
