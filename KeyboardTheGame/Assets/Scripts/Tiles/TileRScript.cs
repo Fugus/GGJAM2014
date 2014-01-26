@@ -7,7 +7,7 @@ public class TileRScript : TileScript {
 
     Quaternion initialRotation;
 
-    void Start()
+    new void Start()
     {
         base.Start();
         playerControl = GameObject.Find ("/Player").GetComponent<PlayerControl>();

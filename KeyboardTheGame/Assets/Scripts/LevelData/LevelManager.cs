@@ -122,7 +122,7 @@ public class LevelManager : MonoBehaviour {
 		tempTypes = new string[4, 12] {
 			{"G", "P", "P", "P", "P", "P", "B", "B", "B", "B", "P", "P"},
 			{"P", "P", "P", "P", "P", "P", "P", "B", "P", "P", "G", "P"},
-			{"P", "P", "B", "P", "P", "P", "P", "T", "S", "P", "P", "P"},
+			{"P", "P", "B", "L", "P", "P", "P", "T", "S", "P", "P", "P"},
 			{"P", "P", "B", "B", "P", "G", "P", "B", "B", "P", "", ""}
 		};
 		ProcessLevelData("Basin", "Dusty Basin", tempTypes);
@@ -169,7 +169,7 @@ public class LevelManager : MonoBehaviour {
 		tempTypes = new string[4, 12] {
 			{"P", "P", "P", "P", "P", "G", "P", "G", "P", "P", "P", "P"},
 			{"P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P"},
-			{"P", "P", "P", "G", "P", "P", "P", "P", "P", "P", "P", "P"},
+			{"P", "P", "P", "G", "L", "P", "P", "P", "P", "P", "P", "P"},
 			{"P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "", ""}
 		};
 		ProcessLevelData("Way", "The Winding Way", tempTypes);
