@@ -5,6 +5,8 @@ using System;
 
 public class PlayerControl : MonoBehaviour
 {
+    TileManager TileManager_;
+
     public float timeToNextTile = 0.2f;
     public float tileRadius = 20.0f;
 
@@ -47,7 +49,9 @@ public class PlayerControl : MonoBehaviour
 
     void Start()
     {
-		targetPosition = GameObject.Find("/Managers").GetComponent<TileManager>().GetTilePosition(3, 2);
+        TileManager_ = GameObject.Find("/Managers").GetComponent<TileManager>();
+        targetPosition = TileManager_.GetTilePosition(3, 2);
+
         //targetPosition = transform.position;
     }
 
@@ -131,7 +135,43 @@ public class PlayerControl : MonoBehaviour
                 direction = MovementDirection.BottomRight;
                 buttonPressed = true;
             }
+
+            if (!CanMoveInDirection(direction))
+            {
+                buttonPressed = false;
+            }
         }
+    }
+
+    bool CanMoveInDirection(MovementDirection direction)
+    {        
+        if (currentTile != null)
+        {
+            TileScript tileScript = currentTile.GetComponent<TileScript>();
+            if (tileScript != null)
+            {
+                Debug.Log("Current : " + tileScript.TileIndexX + " " + tileScript.TileIndexY);
+
+                switch (direction)
+                {
+                    case MovementDirection.TopLeft:
+                        return !TileManager_.HasWall(4, tileScript.TileIndexX, tileScript.TileIndexY) && !TileManager_.HasWall(1, tileScript.TileIndexX - 1 , tileScript.TileIndexY);
+                    case MovementDirection.TopRight:
+                        return !TileManager_.HasWall(5, tileScript.TileIndexX, tileScript.TileIndexY) && !TileManager_.HasWall(2, tileScript.TileIndexX - 1, tileScript.TileIndexY + 1);
+                    case MovementDirection.Left:
+                        return !TileManager_.HasWall(3, tileScript.TileIndexX, tileScript.TileIndexY) && !TileManager_.HasWall(0, tileScript.TileIndexX, tileScript.TileIndexY - 1);
+                    case MovementDirection.Right:
+                        return !TileManager_.HasWall(0, tileScript.TileIndexX, tileScript.TileIndexY) && !TileManager_.HasWall(3, tileScript.TileIndexX, tileScript.TileIndexY + 1);
+                    case MovementDirection.BottomLeft:
+                        return !TileManager_.HasWall(2, tileScript.TileIndexX, tileScript.TileIndexY) && !TileManager_.HasWall(5, tileScript.TileIndexX + 1, tileScript.TileIndexY - 1);
+                    case MovementDirection.BottomRight:
+                        return !TileManager_.HasWall(1, tileScript.TileIndexX, tileScript.TileIndexY) && !TileManager_.HasWall(4, tileScript.TileIndexX + 1, tileScript.TileIndexY);
+                }
+
+            }
+        }
+
+        return true;
     }
 
     #region Sounds
