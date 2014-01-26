@@ -6,6 +6,8 @@ public class LevelManager : MonoBehaviour {
 
 	public Dictionary<string, Level> levels = new Dictionary<string, Level>();
 
+    bool useAZERTY = false;
+
 	// Use this for initialization
 	void Start () {
 		Reset();
@@ -21,6 +23,11 @@ public class LevelManager : MonoBehaviour {
 		levels = new Dictionary<string, Level>();
 		BuildLevelsFromData();
 		GetComponent<TileManager>().LoadLevel("First");
+
+        GameObject playerGameObject = GameObject.FindGameObjectWithTag("Player");
+        PlayerControl playerControlScript = playerGameObject.GetComponent<PlayerControl>();
+        playerControlScript.Reset();
+
 	}
 
 	private void BuildLevelsFromData()
@@ -33,7 +40,7 @@ public class LevelManager : MonoBehaviour {
 		tempTypes = new string[4, 12] {
 			{"P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "B"},
 			{"P", "P", "L", "P", "P", "P", "P", "P", "T", "T", "P", "B"},
-			{"P", "L", "L", "P", "P", "R", "P", "P", "P", "P", "P", "B"},
+			{"P", "L", "L", "P", "P", "R", "P", "P", "P", "P", "P", ""},
 			{"G", "P", "P", "P", "P", "P", "P", "P", "P", "P", "", ""}
 		};
 		ProcessLevelData("First", tempTypes);
@@ -51,7 +58,7 @@ public class LevelManager : MonoBehaviour {
 		tempTypes = new string[4, 12] {
 			{"P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "B"},
 			{"P", "P", "P", "L", "L", "L", "L", "L", "L", "T", "P", "B"},
-			{"P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "B"},
+			{"P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", ""},
 			{"G", "P", "P", "P", "P", "P", "P", "P", "P", "P", "", ""}
 		};
 		ProcessLevelData("Antechamber", tempTypes);
@@ -59,9 +66,67 @@ public class LevelManager : MonoBehaviour {
 		levels["Antechamber"][3][0].metadata = "First";
 	}
 
+    public void UseAZERTY(bool value)
+    {
+        useAZERTY = value;
+    }
+
+    private void AssignLetterToTile(Level level)
+    {
+        if (useAZERTY)
+        {
+            string[] firstRow = { KeyCode.Alpha1.ToString(), KeyCode.Alpha2.ToString(), KeyCode.Alpha3.ToString(), KeyCode.Alpha4.ToString(), KeyCode.Alpha5.ToString(), KeyCode.Alpha6.ToString(), KeyCode.Alpha7.ToString(), KeyCode.Alpha8.ToString(), KeyCode.Alpha9.ToString(), KeyCode.Alpha0.ToString(), KeyCode.Minus.ToString(), KeyCode.Equals.ToString() };
+            string[] secondRow = { "A", "Z", "E", "R", "T", "Y", "U", "I", "O", "P", KeyCode.LeftBracket.ToString(), KeyCode.RightBracket.ToString() };
+            string[] thirdRow = { "Q", "S", "D", "F", "G", "H", "J", "K", "L", "M", KeyCode.Quote.ToString() };
+            string[] fourthRow = { "W", "X", "C", "V", "B", "N", KeyCode.Question.ToString(), KeyCode.Comma.ToString(), KeyCode.Semicolon.ToString(), KeyCode.Colon.ToString() };
+
+            for (int j = 0; j < 12; j++)
+            {
+                level[0][j].letter = firstRow[j];
+                level[1][j].letter = secondRow[j];
+            }
+
+            for (int j = 0; j < 11; j++)
+            {
+                level[2][j].letter = thirdRow[j];
+            }
+
+            for (int j = 0; j < 10; j++)
+            {
+                level[3][j].letter = fourthRow[j];
+            }
+        }
+        else
+        {
+            string[] firstRow = { KeyCode.Alpha1.ToString(), KeyCode.Alpha2.ToString(), KeyCode.Alpha3.ToString(), KeyCode.Alpha4.ToString(), KeyCode.Alpha5.ToString(), KeyCode.Alpha6.ToString(), KeyCode.Alpha7.ToString(), KeyCode.Alpha8.ToString(), KeyCode.Alpha9.ToString(), KeyCode.Alpha0.ToString(), KeyCode.Minus.ToString(), KeyCode.Equals.ToString() };
+            string[] secondRow = { "Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P", KeyCode.LeftBracket.ToString(), KeyCode.RightBracket.ToString() };
+            string[] thirdRow = { "A", "S", "D", "F", "G", "H", "J", "K", "L", KeyCode.Semicolon.ToString(), KeyCode.Quote.ToString() };
+            string[] fourthRow = { "Z", "X", "C", "V", "B", "N", "M", KeyCode.Comma.ToString(), KeyCode.Period.ToString(), KeyCode.Slash.ToString() };
+
+            for (int j = 0; j < 12; j++)
+            {
+                level[0][j].letter = firstRow[j];
+                level[1][j].letter = secondRow[j];
+            }
+
+            for (int j = 0; j < 11; j++)
+            {
+                level[2][j].letter = thirdRow[j];
+            }
+
+            for (int j = 0; j < 10; j++)
+            {
+                level[3][j].letter = fourthRow[j];
+            }
+
+        }
+
+    }
+
 	private void ProcessLevelData(string level_name, string[,] tile_types)
 	{
-		levels.Add(level_name, new Level());
+        Level newLevel = new Level();
+		levels.Add(level_name, newLevel);
 		for(int i = 0; i < 4; i++)
 		{
 			//levels["First"].Add(i, new SortedList<int, Tile>());
@@ -94,6 +159,7 @@ public class LevelManager : MonoBehaviour {
                 }
 			}
 		}
+        AssignLetterToTile(newLevel);
 	}
 
 }

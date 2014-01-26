@@ -20,7 +20,7 @@ public class PlayerControl : MonoBehaviour
 
     public Dictionary<RecordableSounds, AudioClip> sounds;
 
-    enum MovementDirection
+    public enum MovementDirection
     {
         TopLeft,
         TopRight,
@@ -57,8 +57,14 @@ public class PlayerControl : MonoBehaviour
 
 	public void Reset()
 	{
-		sounds = new Dictionary<RecordableSounds, AudioClip>();
-	}
+        sounds = new Dictionary<RecordableSounds, AudioClip>();
+        unfogFirstTile = false;
+        canReadInput = true;
+        buttonPressed = false;
+
+        rigidbody.WakeUp();
+
+    }
 
     Vector2 GetDirection(MovementDirection mvtDirection)
     {
@@ -88,8 +94,6 @@ public class PlayerControl : MonoBehaviour
 
         Vector2 result = new Vector2(Mathf.Cos(angle), Mathf.Sin(angle));
 
-        //Debug.Log(result.ToString());
-
         return result;
     }
 
@@ -101,44 +105,63 @@ public class PlayerControl : MonoBehaviour
             unfogFirstTile = true;
         }
 
-        if (canReadInput)
+        if (canReadInput && currentTile != null)
         {
-            Input.GetKeyUp((KeyCode)Enum.Parse(typeof(KeyCode), "A"));
 
-            if (Input.GetButtonUp("TopLeft"))
+            TileScript tileScript = currentTile.GetComponent<TileScript>();
+            if (tileScript != null)
             {
-                direction = MovementDirection.TopLeft;
-                buttonPressed = true;
-            }
-            if (Input.GetButtonUp("TopRight"))
-            {
-                direction = MovementDirection.TopRight;
-                buttonPressed = true;
-            }
-            if (Input.GetButtonUp("Left"))
-            {
-                direction = MovementDirection.Left;
-                buttonPressed = true;
-            }
-            if (Input.GetButtonUp("Right"))
-            {
-                direction = MovementDirection.Right;
-                buttonPressed = true;
-            }
-            if (Input.GetButtonUp("BottomLeft"))
-            {
-                direction = MovementDirection.BottomLeft;
-                buttonPressed = true;
-            }
-            if (Input.GetButtonUp("BottomRight"))
-            {
-                direction = MovementDirection.BottomRight;
-                buttonPressed = true;
-            }
 
-            if (!CanMoveInDirection(direction))
-            {
-                buttonPressed = false;
+                Tile currentTileTile = tileScript.GetTile();
+
+                Debug.Log("curr tile " + currentTileTile.letter);
+
+                Tile neighbour = tileScript.GetNeighbour(MovementDirection.TopLeft);
+                if (neighbour != null && Input.GetKeyDown((KeyCode)Enum.Parse(typeof(KeyCode), neighbour.letter)))
+                {
+                    direction = MovementDirection.TopLeft;
+                    buttonPressed = true;
+                }
+
+                neighbour = tileScript.GetNeighbour(MovementDirection.TopRight);
+                if (neighbour != null && Input.GetKeyDown((KeyCode)Enum.Parse(typeof(KeyCode), neighbour.letter)))
+                {
+                    direction = MovementDirection.TopRight;
+                    buttonPressed = true;
+                }
+
+                neighbour = tileScript.GetNeighbour(MovementDirection.Left);
+                if (neighbour != null && Input.GetKeyDown((KeyCode)Enum.Parse(typeof(KeyCode), neighbour.letter)))
+                {
+                    direction = MovementDirection.Left;
+                    buttonPressed = true;
+                }
+
+                neighbour = tileScript.GetNeighbour(MovementDirection.Right);
+                if (neighbour != null && Input.GetKeyDown((KeyCode)Enum.Parse(typeof(KeyCode), neighbour.letter)))
+                {
+                    direction = MovementDirection.Right;
+                    buttonPressed = true;
+                }
+
+                neighbour = tileScript.GetNeighbour(MovementDirection.BottomLeft);
+                if (neighbour != null && Input.GetKeyDown((KeyCode)Enum.Parse(typeof(KeyCode), neighbour.letter)))
+                {
+                    direction = MovementDirection.BottomLeft;
+                    buttonPressed = true;
+                }
+
+                neighbour = tileScript.GetNeighbour(MovementDirection.BottomRight);
+                if (neighbour != null && Input.GetKeyDown((KeyCode)Enum.Parse(typeof(KeyCode), neighbour.letter)))
+                {
+                    direction = MovementDirection.BottomRight;
+                    buttonPressed = true;
+                }
+
+                if (buttonPressed && !CanMoveInDirection(direction))
+                {
+                    buttonPressed = false;
+                }
             }
         }
     }
@@ -150,8 +173,6 @@ public class PlayerControl : MonoBehaviour
             TileScript tileScript = currentTile.GetComponent<TileScript>();
             if (tileScript != null)
             {
-                Debug.Log("Current : " + tileScript.TileIndexX + " " + tileScript.TileIndexY);
-
                 switch (direction)
                 {
                     case MovementDirection.TopLeft:

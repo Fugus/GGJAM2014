@@ -33,9 +33,7 @@ public class TileScript : MonoBehaviour {
         hasBeenVisited = true;
         RemoveFOW();
 
-        Debug.Log("Broadcasting from " + TileIndexX + " " + TileIndexY);
         StartCoroutine(broadcastUnfogNearby());
-        Debug.Log("***************");
     }
     
     IEnumerator broadcastUnfogNearby()
@@ -51,8 +49,6 @@ public class TileScript : MonoBehaviour {
     public void UnfogNearbyTiles(Vector3 position)
     {
         float distanceToPosition = (transform.position - position).magnitude;
-        if (distanceToPosition < 1.5f * TileManager.tileWidth)
-            Debug.Log("inrange " + TileIndexX + " " + TileIndexY);
 
         if (spawnedFOW != null && distanceToPosition < 1.5f * TileManager.tileWidth)
         {
@@ -76,6 +72,58 @@ public class TileScript : MonoBehaviour {
         newRotation *=  Quaternion.AngleAxis(180, Vector3.right);
         spawnedFOW = GameObject.Instantiate(fowGameObject, transform.position, newRotation) as GameObject;
         spawnedFOW.transform.parent = transform;
+    }
+
+    public Tile GetTile()
+    {
+        return LevelManager_.levels[TileManager_.currentLevel][TileIndexX][TileIndexY];
+    }
+
+    public Tile GetNeighbour(PlayerControl.MovementDirection dir)
+    {
+        int x = TileIndexX;
+        int y = TileIndexY;
+
+        switch(dir)
+        {
+            case PlayerControl.MovementDirection.TopLeft:
+                x = TileIndexX + 1;
+                y = TileIndexY;
+                break;
+            case PlayerControl.MovementDirection.TopRight:
+                x = TileIndexX - 1;
+                y = TileIndexY + 1;
+                break;
+            case PlayerControl.MovementDirection.Left:
+                x = TileIndexX;
+                y = TileIndexY - 1;
+                break;
+            case PlayerControl.MovementDirection.Right:
+                x = TileIndexX;
+                y = TileIndexY + 1;
+                break;
+            case PlayerControl.MovementDirection.BottomLeft:
+                x = TileIndexX + 1;
+                y = TileIndexY - 1;
+                break;
+            case PlayerControl.MovementDirection.BottomRight:
+                x = TileIndexX + 1;
+                y = TileIndexY;
+                break;
+        }
+
+        if (y < 0)
+            return null;
+        if (x < 0 || x > 3)
+            return null;
+        if (x == 3 && y >= 10)
+            return null;
+        if (x == 2 && y >= 11)
+            return null;
+        if (x < 2 && y >= 12)
+            return null;
+
+        return LevelManager_.levels[TileManager_.currentLevel][x][y];
     }
 
     void RemoveFOW()

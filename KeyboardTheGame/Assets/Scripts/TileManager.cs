@@ -30,7 +30,9 @@ public class TileManager : MonoBehaviour
             return true;
         if (x == 3 && y >= 10)
             return true;
-        if (x < 3 && y >= 12)
+        if (x == 2 && y >= 11)
+            return true;
+        if (x < 2 && y >= 12)
             return true;
 
         Tile tile = GetComponent<LevelManager>().levels[currentLevel][x][y];

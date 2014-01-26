@@ -14,6 +14,8 @@ public class UIManager : MonoBehaviour {
 
 	public string mainTextString = "";
 
+    public bool isAzerty = false;
+
 	// Use this for initialization
 	void Start () {
 	}
@@ -27,13 +29,23 @@ public class UIManager : MonoBehaviour {
 		if(mainGUISkin == null)
 			mainGUISkin = Resources.Load<GUISkin>("MainGUISkin");
 
+        bool newIsAzerty = GUILayout.Toggle(isAzerty, "Use AZERTY keyboard");
+
+        if (newIsAzerty != isAzerty)
+        {
+            GetComponent<LevelManager>().UseAZERTY(newIsAzerty);
+            ResetGame();
+            isAzerty = newIsAzerty;
+        }
+
 		if(mainTextRect == null)
 			mainTextRect = new Rect(MAIN_TEXT_MARGIN, MAIN_TEXT_TOP, Screen.width - MAIN_TEXT_MARGIN * 2, MAIN_TEXT_HEIGHT);
 		//GUI.Label(mainTextRect.GetValueOrDefault(), mainTextString, mainGUISkin.label);
 		GUI.Box (mainTextRect.GetValueOrDefault(), mainTextString, mainGUISkin.box);
+        
 
 		if(resetRect == null)
-			resetRect = new Rect(0, 0, 100, 20);
+			resetRect = new Rect(0, 20, 100, 20);
 		if(GUI.Button(resetRect.GetValueOrDefault(), "Reset")) {
 			ResetGame();
 		};

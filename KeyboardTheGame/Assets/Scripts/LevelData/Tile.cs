@@ -18,6 +18,7 @@ public class Tile
 
 	public string metadata;
     public bool isFogged = true;
+    public string letter;
 
 	public Tile ()
 	{
