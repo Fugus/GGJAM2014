@@ -18,6 +18,8 @@ public class TileGatewayScript : TileScript {
 			if(LevelManager_.levels.ContainsKey(metadata) && TileManager_.currentLevel != metadata) {
 				// trash current tiles
 				TileManager_.LoadLevel(metadata);
+				// show the nice name
+				UIManager_.mainTextString = LevelManager_.levels[metadata].nice_name;
 				// play sound!
 				GameObject.Find ("/Player").GetComponent<PlayerControl>().PlaySound(PlayerControl.RecordableSounds.teleporting);
 			}

@@ -129,7 +129,7 @@ public class PlayerControl : MonoBehaviour
 
                 Tile currentTileTile = tileScript.GetTile();
 
-                Debug.Log("curr tile " + currentTileTile.letter);
+//                Debug.Log("curr tile " + currentTileTile.letter);
 
                 Tile neighbour = tileScript.GetNeighbour(MovementDirection.TopLeft);
                 if (neighbour != null && Input.GetKeyDown((KeyCode)Enum.Parse(typeof(KeyCode), neighbour.letter)))

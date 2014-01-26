@@ -6,6 +6,8 @@ public class Level : SortedDictionary<int, SortedList<int, Tile>>
 {
 	const int NUM_ROWS = 4; // how many rows are in a level
 
+	public string nice_name;
+
 	public Level () : base()
 	{
 		// generate the tiled structure

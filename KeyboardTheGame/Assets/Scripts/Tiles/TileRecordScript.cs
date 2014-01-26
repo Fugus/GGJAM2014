@@ -38,7 +38,7 @@ public class TileRecordScript : TileScript {
 			{
 				timer.Start((float) soundLength);
 				recordedOnceAlready = true;
-				Debug.Log("legnth :" + soundLength);
+				//Debug.Log("legnth :" + soundLength);
 				recordedClip = Microphone.Start(null, false, soundLength, 44100);
 			}
 

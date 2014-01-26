@@ -22,7 +22,7 @@ public class LevelManager : MonoBehaviour {
 	{
 		levels = new Dictionary<string, Level>();
 		BuildLevelsFromData();
-		GetComponent<TileManager>().LoadLevel("First");
+		GetComponent<TileManager>().LoadLevel(FIRST_LEVEL);
 
         GameObject playerGameObject = GameObject.FindGameObjectWithTag("Player");
         PlayerControl playerControlScript = playerGameObject.GetComponent<PlayerControl>();
@@ -30,12 +30,27 @@ public class LevelManager : MonoBehaviour {
 
 	}
 
+	private const string FIRST_LEVEL = "Glade";
+
 	private void BuildLevelsFromData()
 	{
 		if(levels.Count > 0) throw new System.Exception("Tried to build levels more than once.");
 		
 		string[,] tempTypes;
 
+		/*
+		// EXAMPLE
+		tempTypes = new string[4, 12] {
+			{"P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P"},
+			{"P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P"},
+			{"P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P"},
+			{"P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "", ""}
+		};
+		ProcessLevelData("EXAMPLE", "Example nice name", tempTypes);
+		levels["EXAMPLE"][0][0].metadata = "Test Meta";
+		*/
+
+		/*
 		// First
 		tempTypes = new string[4, 12] {
 			{"P", "P", "S", "P", "P", "P", "P", "P", "P", "P", "P", "B"},
@@ -70,6 +85,78 @@ public class LevelManager : MonoBehaviour {
 		levels["Antechamber"][1][9].metadata = "Test text second level.";
 		levels["Antechamber"][3][0].metadata = "First";
 		levels["Antechamber"][0][1].metadata = "jumping";
+		 */
+
+		// Glade
+		tempTypes = new string[4, 12] {
+			{"P", "T", "P", "P", "P", "P", "P", "G", "P", "P", "P", "G"},
+			{"B", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P"},
+			{"P", "P", "P", "G", "P", "P", "P", "P", "P", "P", "P", "P"},
+			{"P", "P", "P", "P", "P", "G", "P", "P", "P", "P", "", ""}
+		};
+		ProcessLevelData("Glade", "Tranquil Glade", tempTypes);
+		levels["Glade"][3][5].metadata = "Basin";
+		levels["Glade"][2][3].metadata = "Way";
+		levels["Glade"][0][7].metadata = "Way";
+		levels["Glade"][0][11].metadata = "Inner";
+		levels["Glade"][0][1].metadata = "Walk across the keyboard with your fingers.";
+
+		// Basin
+		tempTypes = new string[4, 12] {
+			{"G", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P"},
+			{"P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "G", "P"},
+			{"P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P"},
+			{"P", "P", "P", "P", "P", "G", "P", "P", "P", "P", "", ""}
+		};
+		ProcessLevelData("Basin", "Dusty Basin", tempTypes);
+		levels["Basin"][3][5].metadata = "Glade";
+		levels["Basin"][0][0].metadata = "Inner";
+		levels["Basin"][1][10].metadata = "Indiana";
+
+		// Indiana
+		tempTypes = new string[4, 12] {
+			{"P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P"},
+			{"P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "G", "P"},
+			{"P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P"},
+			{"P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "", ""}
+		};
+		ProcessLevelData("Indiana", "Indiana Gulf", tempTypes);
+		levels["Indiana"][1][10].metadata = "Basin";
+
+		// Inner
+		tempTypes = new string[4, 12] {
+			{"G", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "G"},
+			{"P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P"},
+			{"P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "G", "P"},
+			{"P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "", ""}
+		};
+		ProcessLevelData("Inner", "Inner Desert", tempTypes);
+		levels["Inner"][0][0].metadata = "Basin";
+		levels["Inner"][0][11].metadata = "Glade";
+		levels["Inner"][2][10].metadata = "Deep";
+
+		// Deep
+		tempTypes = new string[4, 12] {
+			{"P", "P", "P", "P", "P", "G", "P", "P", "P", "P", "P", "P"},
+			{"P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P"},
+			{"P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "G", "P"},
+			{"P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "", ""}
+		};
+		ProcessLevelData("Deep", "Deep Desert", tempTypes);
+		levels["Deep"][2][10].metadata = "Inner";
+		levels["Deep"][0][5].metadata = "Way";
+
+		// Way
+		tempTypes = new string[4, 12] {
+			{"P", "P", "P", "P", "P", "G", "P", "G", "P", "P", "P", "P"},
+			{"P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P"},
+			{"P", "P", "P", "G", "P", "P", "P", "P", "P", "P", "P", "P"},
+			{"P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "", ""}
+		};
+		ProcessLevelData("Way", "The Winding Way", tempTypes);
+		levels["Way"][2][3].metadata = "Glade";
+		levels["Way"][0][7].metadata = "Glade";
+		levels["Way"][0][5].metadata = "Deep";
 	}
 
     public void UseAZERTY(bool value)
@@ -129,9 +216,10 @@ public class LevelManager : MonoBehaviour {
 
     }
 
-	private void ProcessLevelData(string level_name, string[,] tile_types)
+	private void ProcessLevelData(string level_name, string level_nice_name, string[,] tile_types)
 	{
         Level newLevel = new Level();
+		newLevel.nice_name = level_nice_name;
 		levels.Add(level_name, newLevel);
 		for(int i = 0; i < 4; i++)
 		{
