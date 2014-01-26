@@ -14,7 +14,7 @@ public class TileScript : MonoBehaviour {
 
     public bool hasBeenVisited = false;
     public bool shouldFog = false;
-    GameObject spawnedFOW;
+    protected GameObject spawnedFOW;
 
 	protected bool hasAppliedTriggerAction = false;
     bool firstUpdate = true;
@@ -126,7 +126,7 @@ public class TileScript : MonoBehaviour {
         return LevelManager_.levels[TileManager_.currentLevel][x][y];
     }
 
-    void RemoveFOW()
+    protected void RemoveFOW()
     {
         shouldFog = false;
         LevelManager_.levels[TileManager_.currentLevel][TileIndexX][TileIndexY].isFogged = false;

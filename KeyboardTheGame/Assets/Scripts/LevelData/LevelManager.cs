@@ -38,15 +38,20 @@ public class LevelManager : MonoBehaviour {
 
 		// First
 		tempTypes = new string[4, 12] {
-			{"P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "B"},
-			{"P", "P", "L", "P", "P", "P", "P", "P", "T", "T", "P", "B"},
-			{"P", "L", "L", "P", "P", "R", "P", "P", "P", "P", "P", ""},
-			{"G", "P", "C", "P", "P", "P", "P", "P", "P", "P", "", ""}
+			{"P", "P", "S", "P", "P", "P", "P", "P", "P", "P", "P", "B"},
+			{"P", "P", "L", "P", "P", "S", "P", "P", "T", "T", "P", "B"},
+			{"S", "L", "L", "P", "P", "R", "P", "P", "P", "S", "P", "B"},
+			{"G", "P", "C", "S", "P", "P", "P", "P", "P", "P", "", ""}
 		};
 		ProcessLevelData("First", tempTypes);
 		levels["First"][1][8].metadata = "I print text on the screen!";
 		levels["First"][1][9].metadata = "BUT SO DO I BITCHES!";
 		levels["First"][3][0].metadata = "Antechamber";
+		levels["First"][2][0].metadata = "teleporting";
+		levels["First"][3][3].metadata = "surveying";
+		levels["First"][2][9].metadata = "reading";
+		levels["First"][0][2].metadata = "confused";
+		levels["First"][1][5].metadata = "victory";
         levels["First"][1][8].walls[0] = true;
         levels["First"][1][8].walls[1] = true;
         levels["First"][1][8].walls[2] = true;
@@ -56,7 +61,7 @@ public class LevelManager : MonoBehaviour {
 
 		// Antechamber
 		tempTypes = new string[4, 12] {
-			{"P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "B"},
+			{"P", "S", "P", "P", "P", "P", "P", "P", "P", "P", "P", "B"},
 			{"P", "P", "P", "L", "L", "L", "L", "L", "L", "T", "P", "B"},
 			{"P", "P", "P", "P", "P", "P", "P", "P", "P", "P", "P", ""},
 			{"G", "P", "C", "P", "P", "P", "P", "P", "P", "P", "", ""}
@@ -64,6 +69,7 @@ public class LevelManager : MonoBehaviour {
 		ProcessLevelData("Antechamber", tempTypes);
 		levels["Antechamber"][1][9].metadata = "Test text second level.";
 		levels["Antechamber"][3][0].metadata = "First";
+		levels["Antechamber"][0][1].metadata = "jumping";
 	}
 
     public void UseAZERTY(bool value)
@@ -158,6 +164,9 @@ public class LevelManager : MonoBehaviour {
                     break;
 				case "C":
 					newTile.type = Tile.TYPES.SeeTower;
+					break;
+				case "S":
+					newTile.type = Tile.TYPES.Record;
 					break;
                 }
 			}

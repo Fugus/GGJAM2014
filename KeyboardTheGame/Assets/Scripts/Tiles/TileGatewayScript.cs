@@ -18,8 +18,8 @@ public class TileGatewayScript : TileScript {
 			if(LevelManager_.levels.ContainsKey(metadata) && TileManager_.currentLevel != metadata) {
 				// trash current tiles
 				TileManager_.LoadLevel(metadata);
-				// load new level's tiles
-
+				// play sound!
+				GameObject.Find ("/Player").GetComponent<PlayerControl>().PlaySound(PlayerControl.RecordableSounds.teleporting);
 			}
 		}
 
