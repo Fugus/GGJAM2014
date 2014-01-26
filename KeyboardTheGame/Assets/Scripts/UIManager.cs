@@ -53,9 +53,11 @@ public class UIManager : MonoBehaviour {
 		GUILayout.BeginArea(new Rect(0, Screen.height - BUTTON_HEIGHT, BUTTON_WIDTH, BUTTON_HEIGHT));
 			if(GUILayout.Button("Restart", GUILayout.Width(BUTTON_WIDTH), GUILayout.Height(BUTTON_HEIGHT))) ResetGame();
 		GUILayout.EndArea();
+
 		GUILayout.BeginArea (new Rect(BUTTON_WIDTH, Screen.height - BOTTOM_BAR_HEIGHT, Screen.width - BUTTON_WIDTH - BUTTON_WIDTH, BOTTOM_BAR_HEIGHT));
 			GUILayout.Label(mainTextString, GUILayout.Width(Screen.width - BUTTON_WIDTH - BUTTON_WIDTH), GUILayout.Height (BOTTOM_BAR_HEIGHT));
 		GUILayout.EndArea();
+
 		GUILayout.BeginArea(new Rect(Screen.width - BUTTON_WIDTH, Screen.height - BUTTON_HEIGHT, BUTTON_WIDTH, BUTTON_HEIGHT));
 			if(GUILayout.Button("Exit", GUILayout.Width(BUTTON_WIDTH), GUILayout.Height(BUTTON_HEIGHT))) QuitGame();
 		GUILayout.EndArea();
