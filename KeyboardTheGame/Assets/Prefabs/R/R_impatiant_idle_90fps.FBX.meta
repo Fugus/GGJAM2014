@@ -1,22 +1,36 @@
 fileFormatVersion: 2
-guid: f5f3021f0e4460e42af3f7d3e135dfeb
+guid: 6e4e8778e27188c4eac54b4ab8e4814b
 ModelImporter:
   serializedVersion: 15
   fileIDToRecycleName:
-    100000: Box003
-    100002: //RootNode
-    400000: Box003
-    400002: //RootNode
-    2300000: Box003
-    2300002: //RootNode
-    3300000: Box003
-    3300002: //RootNode
-    4300000: C
-    4300002: Box003
-    7400000: CJump
-    7400002: CIdle
+    100000: eyebrows
+    100002: eyebrows 1
+    100004: R
+    100006: //RootNode
+    100008: Sphere001
+    100010: Sphere002
+    400000: eyebrows
+    400002: eyebrows 1
+    400004: R
+    400006: //RootNode
+    400008: Sphere001
+    400010: Sphere002
+    2300000: eyebrows
+    2300002: eyebrows 1
+    2300004: Sphere001
+    2300006: Sphere002
+    3300000: eyebrows
+    3300002: eyebrows 1
+    3300004: Sphere001
+    3300006: Sphere002
+    4300000: R
+    4300002: Sphere001
+    4300004: Sphere002
+    4300006: eyebrows
+    4300008: eyebrows
+    7400000: RIdle
     9500000: //RootNode
-    13700000: //RootNode
+    13700000: R
   materials:
     importMaterials: 1
     materialName: 0
@@ -33,10 +47,10 @@ ModelImporter:
     extraExposedTransformPaths: []
     clipAnimations:
     - serializedVersion: 16
-      name: CJump
+      name: RIdle
       takeName: Take 001
       firstFrame: 0
-      lastFrame: 24
+      lastFrame: 90
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -58,37 +72,15 @@ ModelImporter:
       transformMask:
       - path: 
         weight: 1
-      - path: Box003
+      - path: eyebrows
         weight: 1
-      maskType: 0
-      maskSource: {instanceID: 0}
-    - serializedVersion: 16
-      name: CIdle
-      takeName: Take 001
-      firstFrame: 24
-      lastFrame: 60
-      wrapMode: 0
-      orientationOffsetY: 0
-      level: 0
-      cycleOffset: 0
-      loop: 0
-      loopTime: 0
-      loopBlend: 0
-      loopBlendOrientation: 0
-      loopBlendPositionY: 0
-      loopBlendPositionXZ: 0
-      keepOriginalOrientation: 0
-      keepOriginalPositionY: 1
-      keepOriginalPositionXZ: 0
-      heightFromFeet: 0
-      mirror: 0
-      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
-      curves: []
-      events: []
-      transformMask:
-      - path: 
+      - path: eyebrows 1
         weight: 1
-      - path: Box003
+      - path: R
+        weight: 1
+      - path: R/Sphere001
+        weight: 1
+      - path: R/Sphere002
         weight: 1
       maskType: 0
       maskSource: {instanceID: 0}

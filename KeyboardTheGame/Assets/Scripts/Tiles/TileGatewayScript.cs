@@ -25,6 +25,8 @@ public class TileGatewayScript : TileScript {
 
 			}
 		}
+
+        base.Update();
 	}
 
 }

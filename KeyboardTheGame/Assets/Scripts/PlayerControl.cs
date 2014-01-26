@@ -8,6 +8,8 @@ public class PlayerControl : MonoBehaviour
     public float timeToNextTile = 0.2f;
     public float tileRadius = 20.0f;
 
+    bool jumpDone = true;
+
     public enum RecordableSounds
     {
         Walking,
@@ -28,6 +30,7 @@ public class PlayerControl : MonoBehaviour
 
 	private Animator anim;					// Reference to the player's animator component.
 
+    bool enteredFirstTile = false;
     bool canReadInput = true;
     bool buttonPressed = false;
     MovementDirection direction;
@@ -38,7 +41,7 @@ public class PlayerControl : MonoBehaviour
 	void Awake()
 	{
 		// Setting up references.
-		anim = GetComponent<Animator>();
+		anim = GetComponentInChildren<Animator>();
         sounds = new Dictionary<RecordableSounds, AudioClip>();
 	}
 
@@ -82,6 +85,12 @@ public class PlayerControl : MonoBehaviour
 
     void Update()
     {
+        if (!enteredFirstTile)
+        {
+            EnterCurrentTile();
+            enteredFirstTile = true;
+        }
+
         if (canReadInput)
         {
             Input.GetKeyUp((KeyCode)Enum.Parse(typeof(KeyCode), "A"));
@@ -160,7 +169,7 @@ public class PlayerControl : MonoBehaviour
         other.gameObject.BroadcastMessage("OnExitTile");
     }
 
-    void ApplyTriggerAction()
+    void EnterCurrentTile()
     {
         currentTile.BroadcastMessage("OnEnterTile");
     }
@@ -179,6 +188,8 @@ public class PlayerControl : MonoBehaviour
 
             rigidbody.AddForce((targetPosition - transform.position) / (timeToNextTile * Time.fixedDeltaTime));
             PlaySound(RecordableSounds.Walking);
+            anim.SetTrigger("jump");
+            jumpDone = false;
         }
 
         Vector3 toTarget = targetPosition - transform.position;
@@ -186,12 +197,20 @@ public class PlayerControl : MonoBehaviour
         if (toTarget.magnitude < 0.01f && !canReadInput)
         {
             // At destination
-            StopSound(RecordableSounds.Walking);
-            canReadInput = true;
-            ApplyTriggerAction();
+            if (jumpDone)
+            {
+                StopSound(RecordableSounds.Walking);
+                canReadInput = true;
+                EnterCurrentTile();
+            }
             rigidbody.velocity = Vector3.zero;
             rigidbody.position = targetPosition;
         }
 	}
+
+    public void JumpDone()
+    {
+        jumpDone = true;
+    }
 
 }
