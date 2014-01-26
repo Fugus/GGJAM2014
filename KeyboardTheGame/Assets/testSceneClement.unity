@@ -525,6 +525,7 @@ GameObject:
   - 82: {fileID: 796084201}
   - 135: {fileID: 796084203}
   - 54: {fileID: 796084200}
+  - 114: {fileID: 796084202}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -636,6 +637,17 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
+--- !u!114 &796084202
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 796084197}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c69d3472ae5cc841bdf72e920c00cd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!135 &796084203
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -813,6 +825,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mainTextString: 
   isAzerty: 0
+  isOculus: 0
+  BeginTex: {fileID: 2800000, guid: 8cf6934c0c101194d9453c0c8dd26d65, type: 3}
+  AzertyTex: {fileID: 2800000, guid: 5a4492308e97df347ae44a80e8fa9b1c, type: 3}
+  OculusTex: {fileID: 2800000, guid: 6b292a8ca2eadbc4280a1148bcdedfa7, type: 3}
+  QwertyTex: {fileID: 2800000, guid: 964941e175a978545b8469f36628519d, type: 3}
+  StandardTex: {fileID: 2800000, guid: 1dc88724b40c47c498d0ae40ebf88740, type: 3}
+  ExitTex: {fileID: 2800000, guid: eb37297e824dad446a12885d93930da7, type: 3}
+  RestartTex: {fileID: 2800000, guid: f8f1c6aca5c517e48b79369ed53651e8, type: 3}
+  SplashExitTex: {fileID: 2800000, guid: dc225d967808d82428902b81987544e0, type: 3}
+  CreditBGTex: {fileID: 2800000, guid: 8655f448957ef534485efbffc15c0ac7, type: 3}
 --- !u!114 &1216339557
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -887,6 +909,18 @@ Prefab:
     - target: {fileID: 400000, guid: 09b071976c50f8843926f6a464e20dde, type: 2}
       propertyPath: m_LocalRotation.w
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 100008, guid: 09b071976c50f8843926f6a464e20dde, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 100010, guid: 09b071976c50f8843926f6a464e20dde, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 100010, guid: 09b071976c50f8843926f6a464e20dde, type: 2}
+      propertyPath: m_TagString
+      value: Untagged
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 09b071976c50f8843926f6a464e20dde, type: 2}
