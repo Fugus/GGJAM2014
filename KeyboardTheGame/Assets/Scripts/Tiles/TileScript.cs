@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+[RequireComponent(typeof(SphereCollider))]
 public class TileScript : MonoBehaviour {
 
     protected UIManager UIManager_;
@@ -31,7 +32,10 @@ public class TileScript : MonoBehaviour {
 		hasAppliedTriggerAction = true;
         hasBeenVisited = true;
         RemoveFOW();
+
+        Debug.Log("Broadcasting from " + TileIndexX + " " + TileIndexY);
         StartCoroutine(broadcastUnfogNearby());
+        Debug.Log("***************");
     }
     
     IEnumerator broadcastUnfogNearby()
@@ -46,8 +50,13 @@ public class TileScript : MonoBehaviour {
 
     public void UnfogNearbyTiles(Vector3 position)
     {
-        if (spawnedFOW != null && (transform.position - position).magnitude < 1.5f * TileManager.tileWidth)
+        float distanceToPosition = (transform.position - position).magnitude;
+        if (distanceToPosition < 1.5f * TileManager.tileWidth)
+            Debug.Log("inrange " + TileIndexX + " " + TileIndexY);
+
+        if (spawnedFOW != null && distanceToPosition < 1.5f * TileManager.tileWidth)
         {
+
             RemoveFOW();
         }
     }
@@ -74,6 +83,7 @@ public class TileScript : MonoBehaviour {
         shouldFog = false;
         LevelManager_.levels[TileManager_.currentLevel][TileIndexX][TileIndexY].isFogged = false;
         GameObject.Destroy(spawnedFOW);
+        spawnedFOW = null;
     }
 
 	// Update is called once per frame

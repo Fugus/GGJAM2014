@@ -3,9 +3,6 @@ using System.Collections;
 
 public class TileGatewayScript : TileScript {
 
-	LevelManager LevelManager_;
-	TileManager TileManager_;
-
 	new void Start () {
 		base.Start();
 		LevelManager_ = GameObject.Find("/Managers").GetComponent<LevelManager>();
