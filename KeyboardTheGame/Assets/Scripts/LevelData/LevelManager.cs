@@ -105,18 +105,16 @@ public class LevelManager : MonoBehaviour {
 
 		levels["Glade"][1][6].metadata = "victory"; // temp for the demo
 
-		/*levels["Glade"][2][3].walls[2] = true;
+		levels["Glade"][2][3].walls[1] = true;
+		levels["Glade"][2][3].walls[2] = true;
 		levels["Glade"][2][3].walls[3] = true;
 		levels["Glade"][2][3].walls[4] = true;
-		levels["Glade"][2][3].walls[5] = true;
-		levels["Glade"][3][4].walls[0] = true;
+		levels["Glade"][3][3].walls[5] = true;
+		levels["Glade"][3][4].walls[4] = true;
 		levels["Glade"][3][4].walls[5] = true;
 		levels["Glade"][3][5].walls[0] = true;
-		levels["Glade"][3][5].walls[1] = true;
-		levels["Glade"][3][5].walls[5] = true;*/
-
-		//levels["Glade"][0][0].walls[1] = true;
-		//levels["Glade"][0][1].walls[1] = true;
+		levels["Glade"][3][5].walls[4] = true;
+		levels["Glade"][3][5].walls[5] = true;
 
 		// Basin
 		tempTypes = new string[4, 12] {

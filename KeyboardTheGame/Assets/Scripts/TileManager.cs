@@ -101,8 +101,8 @@ public class TileManager : MonoBehaviour
             {
                 GameObject addedWall = GameObject.Instantiate(wallPrefab, addedTile.transform.position + wallRotation * tilePosition, wallRotation) as GameObject;
                 addedWall.transform.parent = addedTile.transform;
-                wallRotation *= sideRot;
             }
+			wallRotation *= sideRot;
         }
     }
 
